@@ -9,7 +9,7 @@ In order to install the module, please use the composer package manager.
 
 1. Install via composer:
     ```
-    composer require "wegetfinancing/magento-plugin"
+    composer require "wegetfinancing/magento-checkout-plugin"
     ```
 2. Copy the configuration file etc/config.xml.dist to etc/config.xml
 3. Edit your file etc/config.xml as described in the file
