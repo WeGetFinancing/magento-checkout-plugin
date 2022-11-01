@@ -1,0 +1,31 @@
+{
+    "name": "wegetfinancing/magento-checkout",
+    "description": "WeGetFinancing checkout module for Magento 2.",
+    "license": "LGPL-3.0-only",
+    "authors": [
+        {
+            "name": "Riccardo De Leo",
+            "email": "riccardo.deleo@empaytech.com"
+        }
+    ],
+    "require": {
+        "magento/module-payment": "100.2.*",
+        "wegetfinancing/php-sdk": "1"
+    },
+    "type": "magento2-module",
+    "version": "0.1.0",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "WeGetFinancing\\Checkout\\": ""
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        }
+    ]
+}

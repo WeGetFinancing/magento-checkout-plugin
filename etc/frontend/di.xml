@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- WeGetFinancing_Payment Payment -->
+    <type name="WeGetFinancingPaymentConfigurableInfo">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="is_secure_mode" xsi:type="string">1</item>
+                <item name="methodCode" xsi:type="string">wegetfinancing_payment</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Payment\Model\CcGenericConfigProvider">
+        <arguments>
+            <argument name="methodCodes" xsi:type="array">
+                <item name="wegetfinancing_payment" xsi:type="string">wegetfinancing_payment</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="wegetfinancing_checkout_config" xsi:type="object">WeGetFinancing\Checkout\Ui\ConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,88 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="WeGetFinancing\Checkout\Api\ConfigInterface" type="WeGetFinancing\Checkout\Common\Config" />
+
+    <!-- WeGetFinancing_Payment Payment Facade Virtual Type Configuration -->
+    <virtualType name="WeGetFinancingCheckoutFacade" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="string">wegetfinancing_payment</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form\Cc</argument>
+            <argument name="infoBlockType" xsi:type="string">WeGetFinancingPaymentConfigurableInfo</argument>
+            <argument name="valueHandlerPool" xsi:type="object">WeGetFinancingPaymentValueHandlerPool</argument>
+            <argument name="commandPool" xsi:type="object">WeGetFinancingPaymentCommandPool</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- WeGetFinancing_Payment Payment Configurable Info -->
+    <virtualType name="WeGetFinancingPaymentConfigurableInfo" type="Magento\Payment\Block\ConfigurableInfo">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="methodCode" xsi:type="string">wegetfinancing_payment</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- WeGetFinancing_Checkout Funnel Url Generator Service -->
+    <preference for="WeGetFinancing\Checkout\Api\FunnelUrlGeneratorInterface" type="WeGetFinancing\Checkout\Service\FunnelUrlGenerator" />
+
+    <!-- WeGetFinancing_Checkout Mandatory Fields Validator -->
+    <preference for="WeGetFinancing\Checkout\Validator\MandatoryFieldsArrayValidatorInterface" type="WeGetFinancing\Checkout\Validator\MandatoryFieldsArrayValidator" />
+
+    <!-- WeGetFinancing_Payment Command Pool -->
+    <virtualType name="WeGetFinancingPaymentCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="initialize" xsi:type="string">WeGetFinancing\Checkout\Gateway\Command\InitializeCommand</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- WeGetFinancing_Checkout Decrypt Transaction Builder Composite -->
+    <virtualType name="WeGetFinancingCheckoutDecryptBuilderComposite" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="decrypt" xsi:type="string">WeGetFinancing\Checkout\Gateway\Request\DecryptBuilder</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- WeGetFinancing_Checkout Decrypt Handler -->
+    <virtualType name="WeGetFinancingCheckoutDecryptHandler" type="Magento\Payment\Gateway\Response\HandlerChain">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="payment_details" xsi:type="string">WeGetFinancing\Checkout\Gateway\Response\PaymentDetailsHandler</item>
+                <item name="order_details" xsi:type="string">WeGetFinancing\Checkout\Gateway\Response\UpdateOrderHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- WeGetFinancing_Payment Value Handler Pool -->
+    <virtualType name="WeGetFinancingPaymentValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">WeGetFinancingCheckoutConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- WeGetFinancing_Checkout Value Handler -->
+    <virtualType name="WeGetFinancingCheckoutConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">WeGetFinancing\Checkout\Gateway\Config\Config</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- WeGetFinancing_Checkout Gateway Config -->
+    <virtualType name="WeGetFinancing\Checkout\Gateway\Config\Config" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="string">wegetfinancing_payment</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- WeGetFinancing_Checkout Payment Gateway Config -->
+    <type name="WeGetFinancing\Checkout\Gateway\Config">
+        <arguments>
+            <argument name="valueHandlerPool" xsi:type="object">WeGetFinancingPaymentValueHandlerPool</argument>
+        </arguments>
+    </type>
+</config>
