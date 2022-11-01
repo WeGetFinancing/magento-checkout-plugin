@@ -9,8 +9,8 @@
         }
     ],
     "require": {
-        "magento/module-payment": "100.2.*",
-        "wegetfinancing/php-sdk": "1"
+        "magento/module-payment": "100.*",
+        "wegetfinancing/php-sdk": "1.*"
     },
     "type": "magento2-module",
     "version": "0.1.0",
