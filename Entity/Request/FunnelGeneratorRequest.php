@@ -118,12 +118,13 @@ class FunnelGeneratorRequest implements EntityInterface
             );
         }
 
+        $customer = $quote->getCustomer();
         $address = $quote->getShippingAddress();
 
         $this->firstName = $address->getFirstname();
         $this->lastName = $address->getLastname();
         $this->telephone = $address->getTelephone();
-        $this->email = $address->getEmail();
+        $this->email = $customer->getEmail();
         $this->shippingAmount = $array['shipping_amount'];
 
         $this->address->initFromArray([
