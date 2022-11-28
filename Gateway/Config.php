@@ -29,10 +29,6 @@ class Config
      */
     public function getSdkUrl()
     {
-        if ($this->isSandbox()) {
-            return (string) $this->getValue('sdk_url_sandbox');
-        }
-
         return (string) $this->getValue('sdk_url');
     }
 
