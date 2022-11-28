@@ -110,8 +110,8 @@ define([
         },
 
         isActive: function () {
-            // return this.getCode() === this.isChecked();
-            return true
+            return this.getCode() === this.isChecked();
+            // return true
         },
 
         getPaymentCardSrc: function () {
