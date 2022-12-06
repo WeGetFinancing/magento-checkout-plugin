@@ -15,4 +15,12 @@
             <resource ref="anonymous"/>
         </resources>
     </route>
+
+    <!-- Set Order Inv Id Url -->
+    <route url="/V1/carts/mine/wegetfinancing-set-order-inv-id" method="POST">
+        <service class="WeGetFinancing\Checkout\Api\PostbackUrlInterface" method="processPostback"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
 </routes>

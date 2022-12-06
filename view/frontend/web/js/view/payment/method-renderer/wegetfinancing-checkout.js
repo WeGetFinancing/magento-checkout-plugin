@@ -10,7 +10,8 @@ define([
 ], function(Component, fullScreenLoader, storage,urlBuilder, customer,totals,completeAction, $) {
     'use strict';
 
-    var config = window.checkoutConfig.payment.wegetfinancing_payment;
+    var config = window.checkoutConfig.payment.wegetfinancing_payment,
+        wegetfinancing_inv_id = '';
 
     return Component.extend({
         defaults: {
@@ -58,8 +59,8 @@ define([
                 ).done(
                     function (json) {
                         response = JSON.parse(json);
-
                         if (response.type === "SUCCESS") {
+                            wegetfinancing_inv_id = response.data.inv_id;
                             new GetFinancing(
                                 response.data.href,
                                 function() {
@@ -120,7 +121,7 @@ define([
 
 
         afterPlaceOrder: function () {
-            completeAction.execute();
+            completeAction.execute(wegetfinancing_inv_id);
         },
 
 

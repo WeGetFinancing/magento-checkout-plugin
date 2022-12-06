@@ -15,6 +15,7 @@ In order to install the module, please use the composer package manager.
     ```
     php -d memory_limit=-1 bin/magento module:enable WeGetFinancing_Checkout
     php -d memory_limit=-1 bin/magento setup:upgrade
+    bin/magento setup:db-declaration:generate-whitelist --module-name=WeGetFinancing_Checkout
     php -d memory_limit=-1 bin/magento cache:flush
     php -d memory_limit=-1 bin/magento setup:di:compile
     ```

@@ -85,4 +85,9 @@
             <argument name="valueHandlerPool" xsi:type="object">WeGetFinancingPaymentValueHandlerPool</argument>
         </arguments>
     </type>
+
+    <!-- WeGetFinancing_Checkout InvId Extension Attribute -->
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="wegetfinancing_checkout_add_inv_id_to_sales_order" type="WeGetFinancing\Checkout\Plugin\AddInvIdToSalesOrder"/>
+    </type>
 </config>

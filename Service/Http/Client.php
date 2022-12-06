@@ -45,7 +45,10 @@ class Client
         if (true === $loanResponse->getIsSuccess()) {
             return new JsonResponse([
                 'type' => JsonResponse::TYPE_SUCCESS,
-                'data' => ['href' => $loanResponse->getSuccess()->getHref()]
+                'data' => [
+                    'href' => $loanResponse->getSuccess()->getHref(),
+                    'inv_id' => $loanResponse->getSuccess()->getInvId()
+                ]
             ]);
         }
 
