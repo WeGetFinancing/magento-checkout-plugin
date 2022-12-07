@@ -9,12 +9,13 @@ use Throwable;
 use WeGetFinancing\Checkout\Api\FunnelUrlGeneratorInterface;
 use WeGetFinancing\Checkout\Entity\Request\FunnelGeneratorRequest;
 use WeGetFinancing\Checkout\Entity\Response\ExceptionJsonResponse;
-use WeGetFinancing\Checkout\Exception\ApiResponseJsonEncodeException;
 use WeGetFinancing\Checkout\Service\Http\Client;
 use WeGetFinancing\SDK\Exception\EntityValidationException;
 
 class FunnelUrlGenerator implements FunnelUrlGeneratorInterface
 {
+    use JsonStringifyResponseTrait;
+
     private LoggerInterface $logger;
 
     private Session $session;
@@ -86,28 +87,6 @@ class FunnelUrlGenerator implements FunnelUrlGeneratorInterface
         }
 
         return $this->jsonStringifyResponse($response->toArray());
-    }
-
-    /**
-     * @throws CouldNotSaveException
-     */
-    protected function jsonStringifyResponse(array $response): string
-    {
-        $stringResponse = json_encode($response);
-
-        if (false === $stringResponse) {
-            $exception = new ApiResponseJsonEncodeException(
-                json_last_error_msg(),
-                json_last_error()
-            );
-
-            throw new CouldNotSaveException(
-                __(ApiResponseJsonEncodeException::JSON_ENCODE_GENERAL_ERROR_MESSAGE),
-                $exception
-            );
-        }
-
-        return $stringResponse;
     }
 }
 

@@ -25,6 +25,12 @@
     <!-- WeGetFinancing_Checkout Funnel Url Generator Service -->
     <preference for="WeGetFinancing\Checkout\Api\FunnelUrlGeneratorInterface" type="WeGetFinancing\Checkout\Service\FunnelUrlGenerator" />
 
+    <!-- WeGetFinancing_Checkout Set Order Inv Id Service -->
+    <preference for="WeGetFinancing\Checkout\Api\SetOrderInvIdInterface" type="WeGetFinancing\Checkout\Service\SetOrderInvId" />
+
+    <!-- WeGetFinancing_Checkout Postback Url Service -->
+    <preference for="WeGetFinancing\Checkout\Api\PostbackUrlInterface" type="WeGetFinancing\Checkout\Service\PostbackUrl" />
+
     <!-- WeGetFinancing_Checkout Mandatory Fields Validator -->
     <preference for="WeGetFinancing\Checkout\Validator\MandatoryFieldsArrayValidatorInterface" type="WeGetFinancing\Checkout\Validator\MandatoryFieldsArrayValidator" />
 

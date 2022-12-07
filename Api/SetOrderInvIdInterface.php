@@ -5,12 +5,12 @@ namespace WeGetFinancing\Checkout\Api;
 /**
  * @api
  */
-interface PostbackUrlInterface
+interface SetOrderInvIdInterface
 {
     /**
      * @param string $request
      * @return string
      */
-    public function postbackUrl(string $request): string;
+    public function setOrderInvId(string $request): string;
 
 }

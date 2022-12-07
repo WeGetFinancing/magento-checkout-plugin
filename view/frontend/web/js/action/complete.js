@@ -8,13 +8,28 @@ define([
 
    return {
        execute: function(invId) {
+           let payload = {};
+           payload['invId'] = invId;
            storage.post(
-               url.build('testing'),
+               url.build('V1/carts/mine/wegetfinancing-set-order-inv-id'),
                JSON.stringify(payload),
                true
            ).done(
                function (json) {
-
+                   let response = JSON.parse(json);
+                   if (response.type === "SUCCESS") {
+                       alert('success');
+                       return;
+                   }
+                   if (response.type === "ERROR") {
+                       response.messages.forEach(
+                           function (message) {
+                               this.messageContainer.addErrorMessage({
+                                   message: message.message
+                               });
+                           }.bind(this)
+                       )
+                   }
                }.bind(this)
            ).fail(
                function () {

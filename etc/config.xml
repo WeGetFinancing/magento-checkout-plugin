@@ -19,7 +19,8 @@
                 <wegetfinancing_version>1.9</wegetfinancing_version>
                 <wegetfinancing_url_sandbox>https://api.sandbox.wegetfinancing.com</wegetfinancing_url_sandbox>
                 <wegetfinancing_url>https://api.wegetfinancing.com</wegetfinancing_url>
-                <wegetfinancing_postback_url>https://wegetfinancing.com/postbackexampleurl</wegetfinancing_postback_url>
+                <wegetfinancing_ordertoinvid_url></wegetfinancing_ordertoinvid_url>
+                <wegetfinancing_postback_url>V1/wegetfinancing/update-postback-url</wegetfinancing_postback_url>
 
                 <!-- Configurable section: -->
 
