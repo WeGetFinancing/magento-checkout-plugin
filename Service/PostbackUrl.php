@@ -12,7 +12,8 @@ use Throwable;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use WeGetFinancing\Checkout\Entity\Response\JsonResponse;
 use Magento\Sales\Api\Data\OrderInterface;
-use Magento\Sales\Model\Order;
+use Magento\Quote\Api\CartRepositoryInterface;
+use WeGetFinancing\Checkout\ValueObject\WgfOrderStatusInterface;
 
 class PostbackUrl implements SetOrderInvIdInterface
 {
@@ -24,26 +25,29 @@ class PostbackUrl implements SetOrderInvIdInterface
 
     private OrderRepositoryInterface $orderRepository;
 
-    private string $status;
+    private CartRepositoryInterface $quoteRepository;
 
-    private string $quoteId;
+    private string $wgfStatus;
 
-    private string $invId;
+    private OrderInterface $order;
 
     /**
      * FunnelUrlGenerator constructor.
      * @param LoggerInterface $logger
      * @param Session $session
      * @param OrderRepositoryInterface $orderRepository
+     * @param CartRepositoryInterface $quoteRepository
      */
     public function __construct(
         LoggerInterface $logger,
         Session $session,
-        OrderRepositoryInterface $orderRepository
+        OrderRepositoryInterface $orderRepository,
+        CartRepositoryInterface $quoteRepository
     ) {
         $this->logger = $logger;
         $this->session = $session;
         $this->orderRepository = $orderRepository;
+        $this->quoteRepository = $quoteRepository;
     }
 
     /**
@@ -53,11 +57,21 @@ class PostbackUrl implements SetOrderInvIdInterface
     {
         try {
             $requestArray = json_decode($request, true);
-            $this->quoteId = $requestArray['merchant_transaction_id'];
-            $this->status = $requestArray['updates']['status']
-            $this->invId = $requestArray['request_token'];
+            $this->wgfStatus = $requestArray['updates']['status'];
 
-            $response = (new JsonResponse())->setType(JsonResponse::TYPE_SUCCESS);
+            $quoteId = $requestArray['merchant_transaction_id'];
+            $quote = $this->quoteRepository->get($quoteId);
+            $orderId = $quote->getOrigOrderId();
+            $this->order = $this->orderRepository->get($orderId);
+
+            $orderInvId = $this->order->getExtensionAttributes()->getInvId();
+            if ($requestArray['request_token'] != $orderInvId) {
+                throw new \Exception(
+                    "Order entity id " . $this->order->getEntityId() . " with invId " . $orderInvId .
+                    " doesn't match with request token invId " . $requestArray['request_token']
+                );
+            }
+            $response = $this->setStatusAndGetResponse();
         } catch (Throwable $exception) {
             $this->logger->critical($exception);
             $response = new ExceptionJsonResponse($exception);
@@ -66,30 +80,27 @@ class PostbackUrl implements SetOrderInvIdInterface
         return $this->jsonStringifyResponse($response->toArray());
     }
 
-    protected function setStatus()
+    protected function setStatusAndGetResponse(): JsonResponse
     {
-        if ('approved' === $this->status) {
-            $order->setData(OrderInterface::STATE, Order::STATE_PENDING_PAYMENT);
-            $order->setData(OrderInterface::STATUS, Order::STATE_PENDING_PAYMENT);
-            return;
+        if (WgfOrderStatusInterface::STATUS_APPROVED === $this->wgfStatus) {
+            $this->order->setData(OrderInterface::STATE, Order::STATE_PROCESSING);
+            $this->order->setData(OrderInterface::STATUS, Order::STATE_PROCESSING);
         }
 
-        if ('preapproved' === $this->status) {
-            $order->setData(OrderInterface::STATE, Order::STATE_PENDING_PAYMENT);
-            $order->setData(OrderInterface::STATUS, Order::STATE_PENDING_PAYMENT);
-            return;
+        if (WgfOrderStatusInterface::STATUS_PRE_APPROVED === $this->wgfStatus) {
+            $this->order->setData(OrderInterface::STATE, Order::STATE_PENDING_PAYMENT);
+            $this->order->setData(OrderInterface::STATUS, Order::STATE_PENDING_PAYMENT);
         }
 
-        if ('rejected' === $this->status) {
-            $order->setData(OrderInterface::STATE, Order::STATE_PENDING_PAYMENT);
-            $order->setData(OrderInterface::STATUS, Order::STATE_PENDING_PAYMENT);
-            return;
+        if (WgfOrderStatusInterface::STATUS_REJECTED === $this->wgfStatus) {
+            $this->order->setData(OrderInterface::STATE, Order::STATE_CANCELED);
+            $this->order->setData(OrderInterface::STATUS, Order::STATE_CANCELED);
         }
 
-        if ('refund' === $this->status) {
-            $order->setData(OrderInterface::STATE, Order::STATE_PENDING_PAYMENT);
-            $order->setData(OrderInterface::STATUS, Order::STATE_PENDING_PAYMENT);
-            return;
-        }
+//        if (WgfOrderStatusInterface::STATUS_REFUND === $this->wgfStatus) {
+//
+//        }
+
+        return (new JsonResponse())->setType(JsonResponse::TYPE_SUCCESS);
     }
 }

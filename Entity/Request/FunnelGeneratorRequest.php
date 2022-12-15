@@ -162,7 +162,7 @@ class FunnelGeneratorRequest implements EntityInterface
      * @throws EntityValidationException
      * @throws FunnelGeneratorRequestException
      */
-    protected function commonInit(Quote $quote)
+    protected function commonInit(Quote $quote): self
     {
         $quoteId = $quote->getId();
         if (true === empty($quoteId)) {

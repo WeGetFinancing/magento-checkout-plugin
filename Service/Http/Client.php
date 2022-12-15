@@ -24,7 +24,7 @@ class Client
 
     /**
      * @param FunnelGeneratorRequest $funnelGeneratorRequest
-     * @return void
+     * @return JsonResponse
      * @throws GuzzleException
      * @throws EntityValidationException
      */

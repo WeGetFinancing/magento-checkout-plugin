@@ -7,6 +7,8 @@
                 <title>WeGetFinancing Checkout</title>
                 <active>0</active>
                 <can_initialize>1</can_initialize>
+                <can_refund_partial_per_invoice>1</can_refund_partial_per_invoice>
+                <can_refund>1</can_refund>
                 <is_gateway>1</is_gateway>
                 <can_use_checkout>1</can_use_checkout>
                 <paymentInfoKeys>card_type,exp_date</paymentInfoKeys>
