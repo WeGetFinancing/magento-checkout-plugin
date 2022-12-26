@@ -3,42 +3,33 @@
     <default>
         <payment>
             <wegetfinancing_payment>
-                <model>WeGetFinancingCheckoutFacade</model>
                 <title>WeGetFinancing Checkout</title>
+                <!-- Configurable section: -->
                 <active>0</active>
+                <is_sandbox>1</is_sandbox>
+                <username/>
+                <password/>
+                <merchant_id/>
+                <!-- Configurable section: -->
+                <model>WeGetFinancingCheckoutFacade</model>
                 <can_initialize>1</can_initialize>
                 <can_refund_partial_per_invoice>1</can_refund_partial_per_invoice>
                 <can_refund>1</can_refund>
                 <is_gateway>1</is_gateway>
                 <can_use_checkout>1</can_use_checkout>
-                <paymentInfoKeys>card_type,exp_date</paymentInfoKeys>
-                <sdk_url>https://cdn.wegetfinancing.com/libs/1.0/getfinancing.js</sdk_url>
-                <payment_card_src>https://raw.githubusercontent.com/activemerchant/payment_icons/f55bff0716998fbe425bcb246a560f6bedce9f4f/app/assets/images/payment_icons/wegetfinancing.svg</payment_card_src>
-                <merchant_source_id>Merchant Defined Source ID</merchant_source_id>
-                <button_action_title>Pay</button_action_title>
                 <is_collect_shipping>1</is_collect_shipping>
+                <button_action_title>Pay</button_action_title>
                 <display_name>WeGetFinancing</display_name>
-                <wegetfinancing_version>1.9</wegetfinancing_version>
-                <wegetfinancing_url_sandbox>https://api.sandbox.wegetfinancing.com</wegetfinancing_url_sandbox>
-                <wegetfinancing_url>https://api.wegetfinancing.com</wegetfinancing_url>
-                <wegetfinancing_ordertoinvid_url></wegetfinancing_ordertoinvid_url>
-                <wegetfinancing_postback_url>V1/wegetfinancing/update-postback-url</wegetfinancing_postback_url>
-
-                <!-- Configurable section: -->
-
-                <!-- is_wegetfinancing_sandbox: set to 1 to use sandbox or 0 to use production -->
-                <is_wegetfinancing_sandbox>1</is_wegetfinancing_sandbox>
-
-                <!-- wegetfinancing_username: insert your wegetfinancing username -->
-                <wegetfinancing_username/>
-
-                <!-- wegetfinancing_password: insert your wegetfinancing password -->
-                <wegetfinancing_password/>
-
-                <!-- wegetfinancing_merchant_id: insert your wegetfinancing merchant id -->
-                <wegetfinancing_merchant_id/>
-
-                <!-- Configurable section: -->
+                <api_version>1.9</api_version>
+                <api_sandbox_url>https://api.sandbox.wegetfinancing.com</api_sandbox_url>
+                <api_url>https://api.wegetfinancing.com</api_url>
+                <magento_api_version>/V1</magento_api_version>
+                <sdk_url>https://cdn.wegetfinancing.com/libs/1.0/getfinancing.js</sdk_url>
+                <payment_icon_url>https://raw.githubusercontent.com/activemerchant/payment_icons/f55bff0716998fbe425bcb246a560f6bedce9f4f/app/assets/images/payment_icons/wegetfinancing.svg</payment_icon_url>
+                <cart_guest_path>/guest-carts/mine/wegetfinancing-generate-funnel-url</cart_guest_path>
+                <cart_path>/carts/mine/wegetfinancing-generate-funnel-url</cart_path>
+                <order_to_inv_id_path>/wegetfinancing/order-to-inv-id</order_to_inv_id_path>
+                <postback_path>/wegetfinancing/update-postback</postback_path>
             </wegetfinancing_payment>
         </payment>
     </default>

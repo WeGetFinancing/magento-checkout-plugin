@@ -36,9 +36,9 @@ define([
                     response = {};
 
                 if (!customer.isLoggedIn()) {
-                    serviceUrl = urlBuilder.createUrl('/guest-carts/mine/wegetfinancing-generate-funnel-url', {});
+                    serviceUrl = urlBuilder.createUrl(config.cartGuestPath, {});
                 } else {
-                    serviceUrl = urlBuilder.createUrl('/carts/mine/wegetfinancing-generate-funnel-url', {});
+                    serviceUrl = urlBuilder.createUrl(config.cartPath, {});
                 }
 
                 form_obj.forEach(function(inputObj){
@@ -112,19 +112,15 @@ define([
 
         isActive: function () {
             return this.getCode() === this.isChecked();
-            // return true
         },
 
-        getPaymentCardSrc: function () {
-            return config.paymentCardSrc;
+        getPaymentIconUrl: function () {
+            return config.paymentIconUrl;
         },
-
 
         afterPlaceOrder: function () {
             completeAction.execute(wegetfinancing_inv_id);
-        },
-
-
+        }
     });
 });
 

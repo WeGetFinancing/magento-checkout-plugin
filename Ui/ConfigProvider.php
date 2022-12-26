@@ -69,7 +69,10 @@ class ConfigProvider implements ConfigProviderInterface
                 'wegetfinancing_payment' => [
                     'title' => $this->config->getTitle(),
                     'sdkUrl' => $this->config->getSdkUrl(),
-                    'paymentCardSrc' => $this->config->getPaymentCardSrc(),
+                    'paymentIconUrl' => $this->config->getPaymentIconUrl(),
+                    'orderToInvIdPath' => $this->config->getOrderToInvIdPath(),
+                    'cartGuestPath' => $this->config->getCartGuestPath(),
+                    'cartPath' => $this->config->getCartPath(),
                 ]
             ]
         ];

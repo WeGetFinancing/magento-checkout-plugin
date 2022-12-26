@@ -45,7 +45,12 @@ class SetOrderInvId implements SetOrderInvIdInterface
     {
         try {
             $requestArray = json_decode($request, true);
+
+            $this->logger->critical('INV ID: ' . $requestArray['invId']);
             $order = $this->session->getLastRealOrder();
+
+            $this->logger->critical('ORDER ID: ' . $order->getId());
+
             $ext = $order->getExtensionAttributes();
             $ext->setInvId($requestArray['invId']);
             $order->setExtensionAttributes($ext);

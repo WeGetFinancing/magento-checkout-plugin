@@ -1,0 +1,13 @@
+{
+    "wegetfinancing_inv_id_sales_order": {
+        "column": {
+            "id": true,
+            "order_id": true,
+            "inv_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "WEGETFINANCING_INV_ID_SALES_ORDER_ORDER_ID_SALES_ORDER_ENTITY_ID": true
+        }
+    }
+}

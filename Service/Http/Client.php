@@ -32,10 +32,10 @@ class Client
     {
 
         $auth = AuthRequestEntity::make([
-            'username' => $this->config->getWeGetFinancingUsername(),
-            'password' => $this->config->getWeGetFinancingPassword(),
-            'merchantId' => $this->config->getWeGetFinancingMerchantId(),
-            'url' => $this->config->getWeGetFinancingUrl()
+            'username' => $this->config->getUsername(),
+            'password' => $this->config->getPassword(),
+            'merchantId' => $this->config->getMerchantId(),
+            'url' => $this->config->getApiUrl()
         ]);
 
         $loanRequest = LoanRequestEntity::make($funnelGeneratorRequest->toArray());
