@@ -16,17 +16,9 @@
         </resources>
     </route>
 
-    <!-- Set Order Inv Id Url -->
-    <route url="/V1/wegetfinancing/order-to-inv-id" method="POST">
-        <service class="WeGetFinancing\Checkout\Api\SetOrderInvIdInterface" method="setOrderInvId"/>
-        <resources>
-            <resource ref="self"/>
-        </resources>
-    </route>
-
     <!-- Update Postback Url -->
     <route url="/V1/wegetfinancing/update-postback" method="POST">
-        <service class="WeGetFinancing\Checkout\Api\FunnelUrlGeneratorInterface" method="generateFunnelUrlPublic"/>
+        <service class="WeGetFinancing\Checkout\Api\UpdatePostbackInterface" method="postbackUrl"/>
         <resources>
             <resource ref="anonymous"/>
         </resources>

@@ -77,6 +77,9 @@ class FunnelUrlGenerator implements FunnelUrlGeneratorInterface
             $quote = $this->session->getQuote();
             $this->funnelGeneratorRequest->initFromArrayAndSession($rawRequest, $quote);
 
+            $this->logger->critical('QUOTE ID: ' . json_encode($this->funnelGeneratorRequest->toArray()));
+
+
             $response = $this->client->execute($this->funnelGeneratorRequest);
         } catch (EntityValidationException $exception) {
             $this->logger->critical($exception, $exception->getViolations());

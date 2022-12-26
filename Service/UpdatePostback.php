@@ -4,9 +4,9 @@ namespace WeGetFinancing\Checkout\Service;
 
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Sales\Model\Order;
-use WeGetFinancing\Checkout\Api\SetOrderInvIdInterface;
 use Magento\Checkout\Model\Session;
 use Psr\Log\LoggerInterface;
+use WeGetFinancing\Checkout\Api\UpdatePostbackInterface;
 use WeGetFinancing\Checkout\Entity\Response\ExceptionJsonResponse;
 use Throwable;
 use Magento\Sales\Api\OrderRepositoryInterface;
@@ -15,7 +15,7 @@ use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Quote\Api\CartRepositoryInterface;
 use WeGetFinancing\Checkout\ValueObject\WgfOrderStatusInterface;
 
-class PostbackUrl implements SetOrderInvIdInterface
+class UpdatePostback implements UpdatePostbackInterface
 {
     use JsonStringifyResponseTrait;
 
@@ -53,24 +53,20 @@ class PostbackUrl implements SetOrderInvIdInterface
     /**
      * @throws CouldNotSaveException
      */
-    public function setOrderInvId(string $request): string
-    {
+    public function updatePostback(
+        string $version,
+        string $request_token,
+        string $updates,
+        string $merchant_transaction_id
+    ): string {
         try {
-            $requestArray = json_decode($request, true);
+            $this->logger->critical('');
             $this->wgfStatus = $requestArray['updates']['status'];
 
             $quoteId = $requestArray['merchant_transaction_id'];
             $quote = $this->quoteRepository->get($quoteId);
             $orderId = $quote->getOrigOrderId();
             $this->order = $this->orderRepository->get($orderId);
-
-            $orderInvId = $this->order->getExtensionAttributes()->getInvId();
-            if ($requestArray['request_token'] != $orderInvId) {
-                throw new \Exception(
-                    "Order entity id " . $this->order->getEntityId() . " with invId " . $orderInvId .
-                    " doesn't match with request token invId " . $requestArray['request_token']
-                );
-            }
             $response = $this->setStatusAndGetResponse();
         } catch (Throwable $exception) {
             $this->logger->critical($exception);

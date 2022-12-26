@@ -116,12 +116,7 @@ class Config
 
     public function getPostBackUrl(): string
     {
-        return $this->url->getBaseUrl() . $this->getValue('postback_url') . $this->getPostBackPath();
-    }
-
-    public function getOrderToInvIdPath(): string
-    {
-        return (string) $this->getValue('order_to_inv_id_path');
+        return $this->url->getBaseUrl() . $this->getValue('api_magento_rest_path') . $this->getPostBackPath();
     }
 
     public function getApiVersion(): string

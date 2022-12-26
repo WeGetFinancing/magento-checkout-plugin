@@ -37,7 +37,7 @@ class GeneralResponseValidator extends AbstractValidator
             function ($response) {
                 return [
                     isset($response['messages']['resultCode']) && 'Ok' === $response['messages']['resultCode'],
-                    [$response['messages']['message'][0]['text'] ?? __('Authorize.NET error response')]
+                    [$response['messages']['message'][0]['text'] ?? __('WeGetFinancing error response')]
                 ];
             }
         ];

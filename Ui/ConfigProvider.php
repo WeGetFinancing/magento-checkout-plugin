@@ -70,7 +70,6 @@ class ConfigProvider implements ConfigProviderInterface
                     'title' => $this->config->getTitle(),
                     'sdkUrl' => $this->config->getSdkUrl(),
                     'paymentIconUrl' => $this->config->getPaymentIconUrl(),
-                    'orderToInvIdPath' => $this->config->getOrderToInvIdPath(),
                     'cartGuestPath' => $this->config->getCartGuestPath(),
                     'cartPath' => $this->config->getCartPath(),
                 ]
