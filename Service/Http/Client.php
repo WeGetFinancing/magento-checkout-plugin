@@ -13,7 +13,6 @@ use WeGetFinancing\SDK\Client as SDKClient;
 use WeGetFinancing\SDK\Entity\Request\LoanRequestEntity;
 use WeGetFinancing\SDK\Exception\EntityValidationException;
 
-
 class Client
 {
     private Config $config;

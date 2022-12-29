@@ -26,7 +26,7 @@
     <preference for="WeGetFinancing\Checkout\Api\FunnelUrlGeneratorInterface" type="WeGetFinancing\Checkout\Service\FunnelUrlGenerator" />
 
     <!-- WeGetFinancing_Checkout Postback Url Service -->
-    <preference for="WeGetFinancing\Checkout\Api\PostbackUrlInterface" type="WeGetFinancing\Checkout\Service\PostbackUrl" />
+    <preference for="WeGetFinancing\Checkout\Api\UpdatePostbackInterface" type="WeGetFinancing\Checkout\Service\UpdatePostback" />
 
     <!-- WeGetFinancing_Checkout Mandatory Fields Validator -->
     <preference for="WeGetFinancing\Checkout\Validator\MandatoryFieldsArrayValidatorInterface" type="WeGetFinancing\Checkout\Validator\MandatoryFieldsArrayValidator" />
