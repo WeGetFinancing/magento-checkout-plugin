@@ -58,6 +58,7 @@ class UpdatePostback implements UpdatePostbackInterface
     ) {
         $this->logger = $logger;
         $this->session = $session;
+        $this->config = $config;
         $this->orderRepository = $orderRepository;
         $this->quoteRepository = $quoteRepository;
     }
