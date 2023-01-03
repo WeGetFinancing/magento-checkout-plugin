@@ -63,9 +63,6 @@ class UpdatePostback implements UpdatePostbackInterface
         $this->quoteRepository = $quoteRepository;
     }
 
-    /**
-     * @throws CouldNotSaveException
-     */
     public function updatePostback(
         string $version,
         string $request_token,
@@ -74,12 +71,12 @@ class UpdatePostback implements UpdatePostbackInterface
     ): string {
         try {
             $this->validateRequestAndSetData($version, $request_token, $updates, $merchant_transaction_id);
-            $response = $this->setStatusAndGetResponse();
+            $this->setOrderStatus();
+            return "OK";
         } catch (Throwable $exception) {
             $this->logger->critical($exception);
-            $response = new ExceptionJsonResponse($exception);
         }
-        return $this->jsonStringifyResponse($response->toArray());
+        return "";
     }
 
     /**
@@ -169,11 +166,10 @@ class UpdatePostback implements UpdatePostbackInterface
     }
 
     /**
-     * @return JsonResponse
+     * @return void
      * @throws UpdatePostbackException
-     * @throws JsonResponseException
      */
-    protected function setStatusAndGetResponse(): JsonResponse
+    protected function setOrderStatus()
     {
         if (WgfOrderStatusInterface::STATUS_APPROVED === $this->wgfStatus) {
             $this->order->setData(OrderInterface::STATE, Order::STATE_PROCESSING);
@@ -195,6 +191,5 @@ class UpdatePostback implements UpdatePostbackInterface
             );
         }
         $this->orderRepository->save($this->order);
-        return (new JsonResponse())->setType(JsonResponse::TYPE_SUCCESS);
     }
 }
