@@ -2,6 +2,7 @@
 
 namespace WeGetFinancing\Checkout\Gateway\Command;
 
+use Magento\Framework\DataObject;
 use Magento\Payment\Gateway\CommandInterface;
 use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Model\Order;
@@ -14,7 +15,7 @@ class InitializeCommand implements CommandInterface
      */
     public function execute(array $commandSubject)
     {
-        /** @var \Magento\Framework\DataObject $stateObject */
+        /** @var DataObject $stateObject */
         $stateObject = $commandSubject['stateObject'];
 
         /** @var Payment $payment */

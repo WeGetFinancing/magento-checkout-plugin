@@ -5,6 +5,8 @@ namespace WeGetFinancing\Checkout\Ui;
 use Magento\Checkout\Model\ConfigProviderInterface;
 use Magento\Checkout\Model\Session;
 use Magento\Framework\App\RequestInterface;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Asset\Repository;
 use WeGetFinancing\Checkout\Gateway\Config;
@@ -12,57 +14,32 @@ use Magento\Quote\Model\Quote;
 
 class ConfigProvider implements ConfigProviderInterface
 {
-    /**
-     * @var Config
-     */
-    private $config;
-
-    /**
-     * @var UrlInterface
-     */
-    private $url;
-
-    /**
-     * @var RequestInterface
-     */
-    private $request;
-
-    /**
-     * @var Repository
-     */
-    private $assetRepo;
-
-    /**
-     * @var Quote
-     */
-    private $quote;
+    private Quote $quote;
 
     /**
      * ConfigProvider constructor.
      * @param Config $config
      * @param UrlInterface $url
-     * @param Repository $repository
+     * @param Repository $assetRepo
      * @param RequestInterface $request
      * @param Session $session
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
      */
     public function __construct(
-        Config $config,
-        UrlInterface $url,
-        Repository $repository,
-        RequestInterface $request,
+        private Config $config,
+        private UrlInterface $url,
+        private Repository $assetRepo,
+        private RequestInterface $request,
         Session $session
     ) {
-        $this->config = $config;
-        $this->url = $url;
-        $this->assetRepo = $repository;
-        $this->request = $request;
         $this->quote = $session->getQuote();
     }
 
     /**
      * @return array
      */
-    public function getConfig()
+    public function getConfig(): array
     {
         return [
             'payment' => [
@@ -80,7 +57,7 @@ class ConfigProvider implements ConfigProviderInterface
     /**
      * @return string
      */
-    private function getLogoUrl()
+    private function getLogoUrl(): string
     {
         return $this->getViewFileUrl('images/logo.svg');
     }
@@ -89,7 +66,7 @@ class ConfigProvider implements ConfigProviderInterface
      * @param string $fileId
      * @return string
      */
-    public function getViewFileUrl($fileId)
+    public function getViewFileUrl(string $fileId): string
     {
         try {
             $params = array_merge(['_secure' => $this->request->isSecure()]);

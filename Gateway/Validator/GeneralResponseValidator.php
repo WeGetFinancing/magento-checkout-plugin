@@ -3,13 +3,14 @@
 namespace WeGetFinancing\Checkout\Gateway\Validator;
 
 use Magento\Payment\Gateway\Validator\AbstractValidator;
+use Magento\Payment\Gateway\Validator\ResultInterface;
 
 class GeneralResponseValidator extends AbstractValidator
 {
     /**
      * @inheritdoc
      */
-    public function validate(array $validationSubject)
+    public function validate(array $validationSubject): ResultInterface
     {
         $response = $validationSubject['response'];
 
@@ -31,7 +32,7 @@ class GeneralResponseValidator extends AbstractValidator
     /**
      * @return array
      */
-    private function getResponseValidators()
+    private function getResponseValidators(): array
     {
         return [
             function ($response) {

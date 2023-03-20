@@ -7,22 +7,15 @@ use Magento\Payment\Gateway\Config\ValueHandlerPoolInterface;
 use Magento\Framework\UrlInterface;
 class Config
 {
-    private ValueHandlerPoolInterface $valueHandlerPool;
-
-    private UrlInterface $url;
-
     /**
      * Config constructor.
      * @param ValueHandlerPoolInterface $valueHandlerPool
      * @param UrlInterface $url
      */
     public function __construct(
-        ValueHandlerPoolInterface $valueHandlerPool,
-        UrlInterface $url
-    ) {
-        $this->valueHandlerPool = $valueHandlerPool;
-        $this->url = $url;
-    }
+        private ValueHandlerPoolInterface $valueHandlerPool,
+        private UrlInterface $url
+    ) { }
 
     /**
      * @return string
@@ -87,16 +80,9 @@ class Config
         return (string) $this->getValue('merchant_id');
     }
 
-    public function isSandbox(): bool
+    public function isProd(): bool
     {
-        return (bool) $this->getValue('is_sandbox');
-    }
-
-    public function getApiUrl(): string
-    {
-        return ($this->isSandbox())
-            ? (string) $this->getValue('api_sandbox_url')
-            : (string) $this->getValue('api_url');
+        return false === (bool) $this->getValue('is_sandbox');
     }
 
     public function getCartGuestPath(): string

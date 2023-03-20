@@ -4,13 +4,15 @@
         <payment>
             <wegetfinancing_payment>
                 <title>WeGetFinancing Checkout</title>
+
                 <!-- Configurable section: -->
                 <active>0</active>
                 <is_sandbox>1</is_sandbox>
                 <username/>
                 <password/>
                 <merchant_id/>
-                <!-- Configurable section: -->
+                <!-- /Configurable section: -->
+
                 <model>WeGetFinancingCheckoutFacade</model>
                 <can_initialize>1</can_initialize>
                 <can_refund_partial_per_invoice>1</can_refund_partial_per_invoice>
@@ -21,8 +23,6 @@
                 <button_action_title>Pay</button_action_title>
                 <display_name>WeGetFinancing</display_name>
                 <api_version>1.9</api_version>
-                <api_sandbox_url>https://api.sandbox.wegetfinancing.com</api_sandbox_url>
-                <api_url>https://api.wegetfinancing.com</api_url>
                 <api_magento_rest_path>rest/V1</api_magento_rest_path>
                 <sdk_url>https://cdn.wegetfinancing.com/libs/1.0/getfinancing.js</sdk_url>
                 <payment_icon_url>https://wiki.dev.wegetfinancing.com/public/brand/resources/buttons/logoCircular.svg</payment_icon_url>

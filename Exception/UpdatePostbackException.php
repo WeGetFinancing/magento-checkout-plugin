@@ -9,8 +9,7 @@ class UpdatePostbackException extends Exception
     public const EXPECTED_API_VERSION = "__EXPECTED_API_VERSION__";
     public const RECEIVED_API_VERSION = "__RECEIVED_API_VERSION__";
     public const INVALID_STATUS = "__INVALID_STATUS__";
-
-    public const INVALID__WGF_STATUS = "__INVALID__WGF_STATUS__";
+    public const INV_ID_REPLACE = "__INV_ID__";
 
     public const INVALID_REQUEST_EMPTY_VERSION_ERROR_MESSAGE = 'UpdatePostback invalid request, empty version';
     public const INVALID_REQUEST_EMPTY_VERSION_ERROR_CODE = 1;
@@ -36,9 +35,12 @@ class UpdatePostbackException extends Exception
         'UpdatePostback invalid request, invalid status ' . self::INVALID_STATUS;
     public const INVALID_REQUEST_INVALID_STATUS_ERROR_CODE = 7;
 
-    public const INVALID_REQUEST_EMPTY_QUOTE_ID_ERROR_MESSAGE = 'UpdatePostback invalid request, empty quote id';
-    public const INVALID_REQUEST_EMPTY_QUOTE_ID_ERROR_CODE = 8;
-
     public const INVALID_WGF_STATUS_ERROR_MESSAGE = 'UpdatePostback invalid wgf status';
-    public const INVALID_WGF_STATUS_ERROR_CODE = 9;
+    public const INVALID_WGF_STATUS_ERROR_CODE = 8;
+
+    public const MULTIPLE_TRANSACTIONS_IN_DB_MESSAGE = 'Multiple transaction for inv_id: ' . self::INV_ID_REPLACE;
+    public const MULTIPLE_TRANSACTIONS_IN_DB_CODE = 9;
+
+    public const TRANSACTION_NOT_FOUND_FOR_INV_ID_MESSAGE = 'Transaction not found for inv_id: ' . self::INV_ID_REPLACE;
+    public const TRANSACTION_NOT_FOUND_FOR_INV_ID_CODE = 10;
 }

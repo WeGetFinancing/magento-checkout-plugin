@@ -2,6 +2,7 @@
 
 namespace WeGetFinancing\Checkout\Entity\Request;
 
+use Magento\Framework\App\ProductMetadataInterface;
 use WeGetFinancing\Checkout\Entity\AddressEntity;
 use WeGetFinancing\Checkout\Entity\CartItem;
 use WeGetFinancing\Checkout\Entity\EntityInterface;
@@ -14,8 +15,6 @@ use Magento\Quote\Model\Quote;
 
 class FunnelGeneratorRequest implements EntityInterface
 {
-    protected MandatoryFieldsArrayValidatorInterface $mandatoryFieldsValidator;
-
     protected string $firstName;
 
     protected string $lastName;
@@ -26,13 +25,9 @@ class FunnelGeneratorRequest implements EntityInterface
 
     protected string $shippingAmount;
 
-    protected AddressEntity $address;
-
     protected int $merchantTransactionId;
 
     protected array $items = [];
-
-    private Config $config;
 
     private array $mandatoryFields = [
         'firstname',
@@ -50,14 +45,11 @@ class FunnelGeneratorRequest implements EntityInterface
     private array $sessionMandatoryFields = ['shipping_amount'];
 
     public function __construct(
-        MandatoryFieldsArrayValidatorInterface $mandatoryFieldsValidator,
-        AddressEntity $address,
-        Config $config
-    ) {
-        $this->mandatoryFieldsValidator = $mandatoryFieldsValidator;
-        $this->address = $address;
-        $this->config = $config;
-    }
+        protected MandatoryFieldsArrayValidatorInterface $mandatoryFieldsValidator,
+        protected AddressEntity $address,
+        protected Config $config,
+        protected ProductMetadataInterface $productMetadata
+    ) { }
 
     /**
      * @param array $array
@@ -149,6 +141,9 @@ class FunnelGeneratorRequest implements EntityInterface
             'merchantTransactionId' => (string) $this->merchantTransactionId,
             'success_url' => '',
             'failure_url' => '',
+            'software_name' => $this->productMetadata->getName(),
+            'software_version' => $this->productMetadata->getVersion(),
+            'software_plugin_version' => '-',
             'postback_url' => $this->config->getPostBackUrl(),
             'billingAddress' => $this->address->toArray(),
             'shippingAddress' => $this->address->toArray(),
