@@ -22,8 +22,9 @@ In order to install the module, please use the composer package manager.
    1. Log in into your admin area
    2. From the left menu select Stores -> Configuration
    3. Go in the subsection Sales -> Payment Methods
-   4. In the "Other payment methods" section you will find "WeGetFinancing Checkout"
-   5. Click and insert the required configurations
+   4. In the first select, the country's one, choose "United Stated"
+   5. In the "Other payment methods" section you will find "WeGetFinancing Checkout"
+   6. Click and insert the required configurations
 
 ## Update
 

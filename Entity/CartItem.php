@@ -19,8 +19,6 @@ class CartItem implements EntityInterface
 
     protected string $unitTax;
 
-    protected MandatoryFieldsArrayValidatorInterface $mandatoryFieldsValidator;
-
     private array $mandatoryFields = [
         'sku',
         'displayName',
@@ -29,13 +27,13 @@ class CartItem implements EntityInterface
         'unitTax'
     ];
 
+    public function __construct(
+        protected MandatoryFieldsArrayValidatorInterface $mandatoryFieldsValidator
+    ) { }
+
     static public function make(): self
     {
         return new CartItem(new MandatoryFieldsArrayValidator());
-    }
-
-    public function __construct(MandatoryFieldsArrayValidatorInterface $mandatoryFieldsValidator) {
-        $this->mandatoryFieldsValidator = $mandatoryFieldsValidator;
     }
 
     /**

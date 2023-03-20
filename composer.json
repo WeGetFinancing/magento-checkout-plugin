@@ -10,10 +10,10 @@
     ],
     "require": {
         "magento/module-payment": "100.*",
-        "wegetfinancing/php-sdk": "1.*"
+        "wegetfinancing/php-sdk": "v2.2.0"
     },
-    "type": "magento2-module",
-    "version": "0.2.0",
+    "type": "magento2-module",E.
+    "version": "0.4.0",
     "autoload": {
         "files": [
             "registration.php"

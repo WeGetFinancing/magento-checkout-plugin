@@ -25,6 +25,9 @@
     <!-- WeGetFinancing_Checkout Funnel Url Generator Service -->
     <preference for="WeGetFinancing\Checkout\Api\FunnelUrlGeneratorInterface" type="WeGetFinancing\Checkout\Service\FunnelUrlGenerator" />
 
+    <!-- WeGetFinancing_Checkout Postback Url Service -->
+    <preference for="WeGetFinancing\Checkout\Api\UpdatePostbackInterface" type="WeGetFinancing\Checkout\Service\UpdatePostback" />
+
     <!-- WeGetFinancing_Checkout Mandatory Fields Validator -->
     <preference for="WeGetFinancing\Checkout\Validator\MandatoryFieldsArrayValidatorInterface" type="WeGetFinancing\Checkout\Validator\MandatoryFieldsArrayValidator" />
 
@@ -33,25 +36,7 @@
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="initialize" xsi:type="string">WeGetFinancing\Checkout\Gateway\Command\InitializeCommand</item>
-            </argument>
-        </arguments>
-    </virtualType>
-
-    <!-- WeGetFinancing_Checkout Decrypt Transaction Builder Composite -->
-    <virtualType name="WeGetFinancingCheckoutDecryptBuilderComposite" type="Magento\Payment\Gateway\Request\BuilderComposite">
-        <arguments>
-            <argument name="builders" xsi:type="array">
-                <item name="decrypt" xsi:type="string">WeGetFinancing\Checkout\Gateway\Request\DecryptBuilder</item>
-            </argument>
-        </arguments>
-    </virtualType>
-
-    <!-- WeGetFinancing_Checkout Decrypt Handler -->
-    <virtualType name="WeGetFinancingCheckoutDecryptHandler" type="Magento\Payment\Gateway\Response\HandlerChain">
-        <arguments>
-            <argument name="handlers" xsi:type="array">
-                <item name="payment_details" xsi:type="string">WeGetFinancing\Checkout\Gateway\Response\PaymentDetailsHandler</item>
-                <item name="order_details" xsi:type="string">WeGetFinancing\Checkout\Gateway\Response\UpdateOrderHandler</item>
+                <item name="refund" xsi:type="string">WeGetFinancing\Checkout\Gateway\Command\RefundCommand</item>
             </argument>
         </arguments>
     </virtualType>
@@ -83,6 +68,37 @@
     <type name="WeGetFinancing\Checkout\Gateway\Config">
         <arguments>
             <argument name="valueHandlerPool" xsi:type="object">WeGetFinancingPaymentValueHandlerPool</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Webapi\Rest\Response\RendererFactory">
+        <arguments>
+            <argument name="renders" xsi:type="array">
+                <item name="default" xsi:type="array">
+                    <item name="type" xsi:type="string">*/*</item>
+                    <item name="model" xsi:type="string">Magento\Framework\Webapi\Rest\Response\Renderer\Json</item>
+                </item>
+                <item name="default_text" xsi:type="array">
+                    <item name="type" xsi:type="string">*</item>
+                    <item name="model" xsi:type="string">WeGetFinancing\Checkout\Webapi\Rest\Response\Renderer\Text</item>
+                </item>
+                <item name="application_json" xsi:type="array">
+                    <item name="type" xsi:type="string">application/json</item>
+                    <item name="model" xsi:type="string">Magento\Framework\Webapi\Rest\Response\Renderer\Json</item>
+                </item>
+                <item name="text_xml" xsi:type="array">
+                    <item name="type" xsi:type="string">text/xml</item>
+                    <item name="model" xsi:type="string">Magento\Framework\Webapi\Rest\Response\Renderer\Xml</item>
+                </item>
+                <item name="application_xml" xsi:type="array">
+                    <item name="type" xsi:type="string">application/xml</item>
+                    <item name="model" xsi:type="string">Magento\Framework\Webapi\Rest\Response\Renderer\Xml</item>
+                </item>
+                <item name="application_xhtml_xml" xsi:type="array">
+                    <item name="type" xsi:type="string">application/xhtml+xml</item>
+                    <item name="model" xsi:type="string">Magento\Framework\Webapi\Rest\Response\Renderer\Xml</item>
+                </item>
+            </argument>
         </arguments>
     </type>
 </config>

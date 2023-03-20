@@ -15,4 +15,12 @@
             <resource ref="anonymous"/>
         </resources>
     </route>
+
+    <!-- Update Postback Url -->
+    <route url="/V1/wegetfinancing/update-postback" method="POST">
+        <service class="WeGetFinancing\Checkout\Api\UpdatePostbackInterface" method="updatePostback"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
 </routes>

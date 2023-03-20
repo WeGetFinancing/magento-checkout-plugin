@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="wegetfinancing_transaction" resource="default" engine="innodb"
+           comment="WeGetFinancing Transaction Data Table">
+        <column xsi:type="int" name="wegetfinancing_transaction_id" unsigned="true" nullable="false" identity="true"
+                comment="WeGetFinancing Transaction ID"/>
+        <column xsi:type="int" name="order_id" padding="10" unsigned="true" nullable="false" comment="Order id"/>
+        <column xsi:type="varchar" name="inv_id" nullable="true" length="512"
+                comment="Inv Id - Transaction server side ID"/>
+        <column xsi:type="boolean" name="refunded_server_side" nullable="false" default="false"
+                comment="If true, it means it received a refund from wegetfinancing platform"/>
+        <column xsi:type="boolean" name="refunded_magento_side" nullable="false" default="false"
+                comment="If true, it means it received a refund from magento itself"/>
+        <column xsi:type="boolean" name="shipment_notification_sent" nullable="false" default="false"
+                comment="If true, it means that a shipment notification was sent to wgf platform"/>
+        <column xsi:type="timestamp" name="creation_time" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="WeGetFinancing Creation Time"/>
+        <column xsi:type="timestamp" name="update_time" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="WeGetFinancing Modification Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="wegetfinancing_transaction_id"/>
+        </constraint>
+    </table>
+</schema>

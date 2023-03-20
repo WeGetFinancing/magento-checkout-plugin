@@ -4,30 +4,23 @@ namespace WeGetFinancing\Checkout\Gateway;
 
 use Magento\Framework\Exception\NotFoundException;
 use Magento\Payment\Gateway\Config\ValueHandlerPoolInterface;
-
+use Magento\Framework\UrlInterface;
 class Config
 {
-    private ValueHandlerPoolInterface $valueHandlerPool;
-
     /**
      * Config constructor.
      * @param ValueHandlerPoolInterface $valueHandlerPool
+     * @param UrlInterface $url
      */
     public function __construct(
-        ValueHandlerPoolInterface $valueHandlerPool
-    ) {
-        $this->valueHandlerPool = $valueHandlerPool;
-    }
-
-    public function isSandbox(): bool
-    {
-        return (bool) $this->getValue('is_sandbox');
-    }
+        private ValueHandlerPoolInterface $valueHandlerPool,
+        private UrlInterface $url
+    ) { }
 
     /**
      * @return string
      */
-    public function getSdkUrl()
+    public function getSdkUrl(): string
     {
         return (string) $this->getValue('sdk_url');
     }
@@ -35,15 +28,15 @@ class Config
     /**
      * @return string
      */
-    public function getPaymentCardSrc()
+    public function getPaymentIconUrl(): string
     {
-        return (string) $this->getValue('payment_card_src');
+        return (string) $this->getValue('payment_icon_url');
     }
 
     /**
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return (string) $this->getValue('title');
     }
@@ -51,23 +44,7 @@ class Config
     /**
      * @return string
      */
-    public function getMerchantSourceId()
-    {
-        return (string) $this->getValue('merchant_source_id');
-    }
-
-    /**
-     * @return string
-     */
-    public function getReviewMessage()
-    {
-        return (string) $this->getValue('review_message');
-    }
-
-    /**
-     * @return string
-     */
-    public function getButtonActionTitle()
+    public function getButtonActionTitle(): string
     {
         return (string) $this->getValue('button_action_title');
     }
@@ -75,7 +52,7 @@ class Config
     /**
      * @return string
      */
-    public function getDisplayName()
+    public function getDisplayName(): string
     {
         return (string) $this->getValue('display_name');
     }
@@ -83,53 +60,61 @@ class Config
     /**
      * @return bool
      */
-    public function isCollectShipping()
+    public function isCollectShipping(): bool
     {
         return (bool) $this->getValue('is_collect_shipping');
     }
 
-    public function getWeGetFinancingUsername(): string
+    public function getUsername(): string
     {
-        return (string) $this->getValue('wegetfinancing_username');
+        return (string) $this->getValue('username');
     }
 
-    public function getWeGetFinancingPassword(): string
+    public function getPassword(): string
     {
-        return (string) $this->getValue('wegetfinancing_password');
+        return (string) $this->getValue('password');
     }
 
-    public function getWeGetFinancingMerchantId(): string
+    public function getMerchantId(): string
     {
-        return (string) $this->getValue('wegetfinancing_merchant_id');
+        return (string) $this->getValue('merchant_id');
     }
 
-    public function isWeGetFinancingSandbox(): bool
+    public function isProd(): bool
     {
-        return (bool) $this->getValue('is_wegetfinancing_sandbox');
+        return false === (bool) $this->getValue('is_sandbox');
     }
 
-    public function getWeGetFinancingUrl(): string
+    public function getCartGuestPath(): string
     {
-        return ($this->isWeGetFinancingSandbox())
-            ? (string) $this->getValue('wegetfinancing_url_sandbox')
-            : (string) $this->getValue('wegetfinancing_url');
+        return (string) $this->getValue('cart_guest_path');
     }
 
-    public function getWeGetFinancingPostBackUrl(): string
+    public function getCartPath(): string
     {
-        return (string) $this->getValue('wegetfinancing_postback_url');
+        return (string) $this->getValue('cart_path');
     }
 
-    public function getWeGetFinancingVersion(): string
+    public function getPostBackPath(): string
     {
-        return (string) $this->getValue('wegetfinancing_version');
+        return (string) $this->getValue('postback_path');
+    }
+
+    public function getPostBackUrl(): string
+    {
+        return $this->url->getBaseUrl() . $this->getValue('api_magento_rest_path') . $this->getPostBackPath();
+    }
+
+    public function getApiVersion(): string
+    {
+        return (string) $this->getValue('api_version');
     }
 
     /**
      * @param string $field
      * @return mixed|null
      */
-    private function getValue(string $field)
+    private function getValue(string $field): mixed
     {
         try {
             $handler = $this->valueHandlerPool->get($field);

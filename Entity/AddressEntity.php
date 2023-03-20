@@ -15,13 +15,9 @@ class AddressEntity implements EntityInterface
 
     protected string $zipcode;
 
-    private RegionFactory $regionFactory;
-
     public function __construct(
-        RegionFactory $regionFactory
-    ) {
-        $this->regionFactory = $regionFactory;
-    }
+        private RegionFactory $regionFactory
+    ) { }
 
     /**
      * @param array $array

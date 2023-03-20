@@ -2,6 +2,7 @@
 
 namespace WeGetFinancing\Checkout\Entity\Request;
 
+use Magento\Framework\App\ProductMetadataInterface;
 use WeGetFinancing\Checkout\Entity\AddressEntity;
 use WeGetFinancing\Checkout\Entity\CartItem;
 use WeGetFinancing\Checkout\Entity\EntityInterface;
@@ -14,8 +15,6 @@ use Magento\Quote\Model\Quote;
 
 class FunnelGeneratorRequest implements EntityInterface
 {
-    protected MandatoryFieldsArrayValidatorInterface $mandatoryFieldsValidator;
-
     protected string $firstName;
 
     protected string $lastName;
@@ -26,13 +25,9 @@ class FunnelGeneratorRequest implements EntityInterface
 
     protected string $shippingAmount;
 
-    protected AddressEntity $address;
-
     protected int $merchantTransactionId;
 
     protected array $items = [];
-
-    private Config $config;
 
     private array $mandatoryFields = [
         'firstname',
@@ -50,14 +45,11 @@ class FunnelGeneratorRequest implements EntityInterface
     private array $sessionMandatoryFields = ['shipping_amount'];
 
     public function __construct(
-        MandatoryFieldsArrayValidatorInterface $mandatoryFieldsValidator,
-        AddressEntity $address,
-        Config $config
-    ) {
-        $this->mandatoryFieldsValidator = $mandatoryFieldsValidator;
-        $this->address = $address;
-        $this->config = $config;
-    }
+        protected MandatoryFieldsArrayValidatorInterface $mandatoryFieldsValidator,
+        protected AddressEntity $address,
+        protected Config $config,
+        protected ProductMetadataInterface $productMetadata
+    ) { }
 
     /**
      * @param array $array
@@ -143,13 +135,16 @@ class FunnelGeneratorRequest implements EntityInterface
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
             'shippingAmount' => $this->shippingAmount,
-            'version' => $this->config->getWeGetFinancingVersion(),
+            'version' => $this->config->getApiVersion(),
             'email' => $this->email,
             'phone' => $this->telephone,
             'merchantTransactionId' => (string) $this->merchantTransactionId,
             'success_url' => '',
             'failure_url' => '',
-            'postback_url' => $this->config->getWeGetFinancingPostBackUrl(),
+            'software_name' => $this->productMetadata->getName(),
+            'software_version' => $this->productMetadata->getVersion(),
+            'software_plugin_version' => '-',
+            'postback_url' => $this->config->getPostBackUrl(),
             'billingAddress' => $this->address->toArray(),
             'shippingAddress' => $this->address->toArray(),
             'cartItems' => $this->items
@@ -162,7 +157,7 @@ class FunnelGeneratorRequest implements EntityInterface
      * @throws EntityValidationException
      * @throws FunnelGeneratorRequestException
      */
-    protected function commonInit(Quote $quote)
+    protected function commonInit(Quote $quote): self
     {
         $quoteId = $quote->getId();
         if (true === empty($quoteId)) {

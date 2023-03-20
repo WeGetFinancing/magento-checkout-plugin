@@ -10,7 +10,8 @@ define([
 ], function(Component, fullScreenLoader, storage,urlBuilder, customer,totals,completeAction, $) {
     'use strict';
 
-    var config = window.checkoutConfig.payment.wegetfinancing_payment;
+    var config = window.checkoutConfig.payment.wegetfinancing_payment,
+        wegetfinancing_inv_id = '';
 
     return Component.extend({
         defaults: {
@@ -35,9 +36,9 @@ define([
                     response = {};
 
                 if (!customer.isLoggedIn()) {
-                    serviceUrl = urlBuilder.createUrl('/guest-carts/mine/wegetfinancing-generate-funnel-url', {});
+                    serviceUrl = urlBuilder.createUrl(config.cartGuestPath, {});
                 } else {
-                    serviceUrl = urlBuilder.createUrl('/carts/mine/wegetfinancing-generate-funnel-url', {});
+                    serviceUrl = urlBuilder.createUrl(config.cartPath, {});
                 }
 
                 form_obj.forEach(function(inputObj){
@@ -58,8 +59,8 @@ define([
                 ).done(
                     function (json) {
                         response = JSON.parse(json);
-
                         if (response.type === "SUCCESS") {
+                            wegetfinancing_inv_id = response.data.inv_id;
                             new GetFinancing(
                                 response.data.href,
                                 function() {
@@ -111,19 +112,15 @@ define([
 
         isActive: function () {
             return this.getCode() === this.isChecked();
-            // return true
         },
 
-        getPaymentCardSrc: function () {
-            return config.paymentCardSrc;
+        getPaymentIconUrl: function () {
+            return config.paymentIconUrl;
         },
-
 
         afterPlaceOrder: function () {
-            completeAction.execute();
-        },
-
-
+            completeAction.execute(wegetfinancing_inv_id);
+        }
     });
 });
 

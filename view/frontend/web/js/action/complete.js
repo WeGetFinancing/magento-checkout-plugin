@@ -5,7 +5,7 @@ define([
    'use strict';
 
    return {
-       execute: function() {
+       execute: function(invId) {
            fullScreenLoader.stopLoader();
            redirectOnSuccessAction.execute();
        }
