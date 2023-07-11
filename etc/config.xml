@@ -11,6 +11,15 @@
                 <username/>
                 <password/>
                 <merchant_id/>
+                <ppe_is_debug>1</ppe_is_debug>
+                <ppe_price_selector>.price-final_price > .price</ppe_price_selector>
+                <ppe_product_name_selector>.product .name .product-item-name</ppe_product_name_selector>
+                <ppe_merchant_token/>
+                <ppe_is_apply_now>1</ppe_is_apply_now>
+                <ppe_is_branded>1</ppe_is_branded>
+                <ppe_minimum_amount>1000</ppe_minimum_amount>
+                <ppe_custom_text>or just</ppe_custom_text>
+                <ppe_position>center</ppe_position>
                 <!-- /Configurable section: -->
 
                 <model>WeGetFinancingCheckoutFacade</model>
@@ -29,6 +38,11 @@
                 <cart_guest_path>/guest-carts/mine/wegetfinancing-generate-funnel-url</cart_guest_path>
                 <cart_path>/carts/mine/wegetfinancing-generate-funnel-url</cart_path>
                 <postback_path>/wegetfinancing/update-postback</postback_path>
+                <ppe_js_prod>https://ppe.wegetfinancing.com/index.js</ppe_js_prod>
+                <ppe_js_sandbox>https://ppe.sandbox.dev.wegetfinancing.com/index.js</ppe_js_sandbox>
+                <ppe_css_prod>https://ppe.wegetfinancing.com/index.css</ppe_css_prod>
+                <ppe_css_sandbox>https://ppe.sandbox.dev.wegetfinancing.com/index.css</ppe_css_sandbox>
+
             </wegetfinancing_payment>
         </payment>
     </default>

@@ -1,0 +1,6 @@
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="https://ppe.wegetfinancing.com/index.css" rel="stylesheet" src_type="url"/>
+        <link src="WeGetFinancing_Checkout::js/ppe.js"/>
+    </head>
+</page>

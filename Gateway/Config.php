@@ -5,6 +5,7 @@ namespace WeGetFinancing\Checkout\Gateway;
 use Magento\Framework\Exception\NotFoundException;
 use Magento\Payment\Gateway\Config\ValueHandlerPoolInterface;
 use Magento\Framework\UrlInterface;
+
 class Config
 {
     /**
@@ -108,6 +109,58 @@ class Config
     public function getApiVersion(): string
     {
         return (string) $this->getValue('api_version');
+    }
+
+    public function getPpeJsUrl(): string
+    {
+        return $this->isProd()
+            ? (string) $this->getValue('ppe_js_prod')
+            : (string) $this->getValue('ppe_js_sandbox');
+    }
+
+    public function getPpePriceSelector(): string
+    {
+        return (string) $this->getValue('ppe_price_selector');
+    }
+
+    public function getPpeProductNameSelector(): string
+    {
+        return (string) $this->getValue('ppe_product_name_selector');
+    }
+
+    public function getPpeIsDebug(): bool
+    {
+        return (bool) $this->getValue('ppe_is_debug');
+    }
+
+    public function getPpeToken(): string
+    {
+        return (string) $this->getValue('ppe_merchant_token');
+    }
+
+    public function getPpeIsApplyNow(): bool
+    {
+        return (bool) $this->getValue('ppe_is_apply_now');
+    }
+
+    public function getPpeIsBranded(): bool
+    {
+        return (bool) $this->getValue('ppe_is_branded');
+    }
+
+    public function getPpeMinAmount(): string
+    {
+        return (string) $this->getValue('ppe_minimum_amount');
+    }
+
+    public function getPpeCustomText(): string
+    {
+        return (string) $this->getValue('ppe_custom_text');
+    }
+
+    public function getPpePosition(): string
+    {
+        return (string) $this->getValue('ppe_position');
     }
 
     /**
