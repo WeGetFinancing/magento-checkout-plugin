@@ -23,4 +23,20 @@
             <resource ref="anonymous"/>
         </resources>
     </route>
+
+    <!-- Get Ppe Config -->
+    <route url="/V1/wegetfinancing/get-ppe-config" method="GET">
+        <service class="WeGetFinancing\Checkout\Api\GetPpeConfigInterface" method="getPpeConfig"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Validate Ppe Merchant Token -->
+    <route url="/V1/wegetfinancing/validate-ppe-merchant-token" method="POST">
+        <service class="WeGetFinancing\Checkout\Api\ValidateCredentialsInterface" method="validateMerchantToken"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
 </routes>

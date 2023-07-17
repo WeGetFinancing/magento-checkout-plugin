@@ -28,7 +28,7 @@ class UpdatePostback implements UpdatePostbackInterface
 {
     use JsonStringifyResponseTrait;
 
-    const FIELD_STATUS = "status";
+    public const FIELD_STATUS = "status";
     public const WGF_APPROVED_STATUS = "approved";
     public const WGF_PREAPPROVED_STATUS = "preapproved";
     public const WGF_REJECTED_STATUS = "rejected";

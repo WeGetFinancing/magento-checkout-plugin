@@ -10,7 +10,7 @@
     ],
     "require": {
         "magento/module-payment": "100.*",
-        "wegetfinancing/php-sdk": "v2.2.0"
+        "wegetfinancing/php-sdk": "2.*"
     },
     "type": "magento2-module",
     "version": "0.4.0",
@@ -27,5 +27,10 @@
             "type": "composer",
             "url": "https://repo.magento.com/"
         }
-    ]
+    ],
+    "config": {
+        "allow-plugins": {
+            "magento/composer-dependency-version-audit-plugin": true
+        }
+    }
 }

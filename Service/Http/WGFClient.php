@@ -2,10 +2,12 @@
 
 namespace WeGetFinancing\Checkout\Service\Http;
 
+use GuzzleHttp\Exception\GuzzleException;
 use WeGetFinancing\Checkout\Entity\Request\FunnelGeneratorRequest;
 use WeGetFinancing\Checkout\Entity\Response\JsonResponse;
 use WeGetFinancing\Checkout\Exception\WGFClientException;
 use WeGetFinancing\Checkout\Gateway\Config;
+use WeGetFinancing\Checkout\ValueObject\PpeSettings;
 use WeGetFinancing\SDK\Entity\AuthEntity;
 use WeGetFinancing\SDK\Client as SDKClient;
 use WeGetFinancing\SDK\Entity\Request\LoanRequestEntity;
@@ -14,9 +16,12 @@ use WeGetFinancing\SDK\Entity\Response\ResponseEntity;
 use WeGetFinancing\SDK\Exception\EntityValidationException;
 use Psr\Log\LoggerInterface;
 use \Throwable;
+use WeGetFinancing\SDK\Service\PpeClient;
 
 class WGFClient
 {
+    public const PPE_TEST_SUCCESS = "Merchant Token is Valid";
+
     public function __construct(
         private Config $config,
         private LoggerInterface $logger
@@ -63,6 +68,19 @@ class WGFClient
         $authEntity = $this->getAuthEntity();
         $client = SDKClient::make($authEntity);
         return $client->updateStatus($updateEntity);
+    }
+
+    /**
+     * @param string $token
+     * @return array<string, string>
+     * @throws WGFClientException
+     * @throws GuzzleException
+     */
+    public function validatePpeMerchantToken(string $token): array
+    {
+        $authEntity = $this->getAuthEntity();
+        $client = SDKClient::make($authEntity);
+        return $client->testPpe($this->data[PpeSettings::MERCHANT_TOKEN_ID]);
     }
 
     /**
