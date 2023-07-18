@@ -25,6 +25,8 @@ require([
                     branded: response.branded,
                     minAmount: response.minAmount,
                     customText: response.customText,
+                    hover: response.hover,
+                    fontSize: response.fontSize,
                     position: response.position
                 };
 

@@ -142,10 +142,29 @@
                     <label>PPE Custom Text</label>
                 </field>
                 <field
-                        id="ppe_position"
+                        id="ppe_is_hover"
                         translate="label"
                         type="select"
                         sortOrder="14"
+                        showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1"
+                >
+                    <label>PPE Is Hover</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field
+                        id="ppe_font_size"
+                        translate="label"
+                        type="text"
+                        sortOrder="15"
+                        showInDefault="1" showInWebsite="1" showInStore="1"
+                >
+                    <label>PPE Font Size Percent</label>
+                </field>
+                <field
+                        id="ppe_position"
+                        translate="label"
+                        type="select"
+                        sortOrder="16"
                         showInDefault="1" showInWebsite="1" showInStore="1"
                 >
                     <label>PPE Position</label>

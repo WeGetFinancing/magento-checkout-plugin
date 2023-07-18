@@ -158,6 +158,17 @@ class Config
         return (string) $this->getValue('ppe_custom_text');
     }
 
+    public function getPpeIsHover(): bool
+    {
+        return (bool) $this->getValue('ppe_is_hover');
+    }
+
+    public function getPpeFontSize(): string
+    {
+        return (string) $this->getValue('ppe_font_size');
+    }
+
+
     public function getPpePosition(): string
     {
         return (string) $this->getValue('ppe_position');

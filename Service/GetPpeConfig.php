@@ -34,6 +34,8 @@ class GetPpeConfig implements GetPpeConfigInterface
                 'minAmount' => $this->config->getPpeMinAmount(),
                 'customText' => $this->config->getPpeCustomText(),
                 'position' => $this->config->getPpePosition(),
+                'hover' => $this->config->getPpeIsHover(),
+                'fontSize' => $this->config->getPpeFontSize(),
                 'ppeJsUrl' => $this->config->getPpeJsUrl()
             ]);
         } catch (Throwable $exception) {
