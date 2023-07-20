@@ -31,8 +31,8 @@ class ValidateCredentials implements ValidateCredentialsInterface
                 $this->client->validatePpeMerchantToken($token)
             );
         } catch (Throwable $exception) {
-            $this->logger->error(self::class . '::updatePostback() Exception');
-            $this->logger->error($exception);
+            $this->logger->error(self::class . '::validateMerchantToken() Exception');
+            $this->logger->error($exception->getMessage());
         }
         return $this->jsonStringifyResponse([
             'status' => 'critical',

@@ -48,17 +48,7 @@ class ConfigProvider implements ConfigProviderInterface
                     'sdkUrl' => $this->config->getSdkUrl(),
                     'paymentIconUrl' => $this->config->getPaymentIconUrl(),
                     'cartGuestPath' => $this->config->getCartGuestPath(),
-                    'cartPath' => $this->config->getCartPath(),
-                    'ppeJsUrl' => $this->config-getPpeJsUrl(),
-                    'ppePriceSelector' => $this->config-getPpePriceSelector(),
-                    'ppeProductNameSelector' => $this->config-getPpeProductNameSelector(),
-                    'ppeIsDebug' => $this->config-getPpeIsDebug(),
-                    'ppeToken' => $this->config-getPpeToken(),
-                    'ppeIsApplyNow' => $this->config-getPpeIsApplyNow(),
-                    'ppeIsBranded' => $this->config-getPpeIsBranded(),
-                    'ppeMinAmount' => $this->config-getPpeMinAmount(),
-                    'ppeCustomText' => $this->config-getPpeCustomText(),
-                    'ppePosition' => $this->config-getPpePosition()
+                    'cartPath' => $this->config->getCartPath()
                 ]
             ]
         ];

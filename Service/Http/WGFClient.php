@@ -78,9 +78,14 @@ class WGFClient
      */
     public function validatePpeMerchantToken(string $token): array
     {
-        $authEntity = $this->getAuthEntity();
+        $authEntity = AuthEntity::make([
+            'username' => 'not-applicable',
+            'password' => 'not-applicable',
+            'merchantId' => 'not-applicable',
+            'prod' => $this->config->isProd()
+        ]);
         $client = SDKClient::make($authEntity);
-        return $client->testPpe($this->data[PpeSettings::MERCHANT_TOKEN_ID]);
+        return $client->testPpe($token);
     }
 
     /**

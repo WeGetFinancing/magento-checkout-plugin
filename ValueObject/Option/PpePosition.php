@@ -10,11 +10,8 @@ class PpePosition implements OptionSourceInterface
     {
         return [
             ['value' => 'center', 'label' => __('Center')],
-            ['value' => 'equalSpacing', 'label' => __('Equal Spacing')],
-            ['value' => 'leading', 'label' => __('Leading')],
-            ['value' => 'trailing', 'label' => __('Trailing')],
-            ['value' => 'fill', 'label' => __('Fill')],
-            ['value' => 'fillEvenly', 'label' => __('Fill Evenly')]
+            ['value' => 'flex-start', 'label' => __('Flex Start')],
+            ['value' => 'flex-end', 'label' => __('Flex End')]
         ];
     }
 
@@ -27,11 +24,8 @@ class PpePosition implements OptionSourceInterface
     {
         return [
             'center' => __('Center'),
-            'equalSpacing' => __('Equal Spacing'),
-            'leading' => __('Leading'),
-            'trailing' => __('Trailing'),
-            'fill' => __('Fill'),
-            'fillEvenly' => __('Fill Evenly')
+            'flex-start' => __('Flex Start'),
+            'flex-end' => __('Flex End')
         ];
     }
 }
