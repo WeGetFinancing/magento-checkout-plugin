@@ -7,7 +7,12 @@ use WeGetFinancing\Checkout\Model\ResourceModel\WeGetFinancingTransaction as WeG
 
 class WeGetFinancingTransaction extends AbstractModel
 {
-    protected function _construct()
+    /**
+     * WeGetFinancingTransaction secondary constructor.
+     *
+     * @return void
+     */
+    protected function _construct(): void
     {
         $this->_init(WeGetFinancingTransactionResource::class);
     }

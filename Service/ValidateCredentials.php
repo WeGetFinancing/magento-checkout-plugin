@@ -2,6 +2,7 @@
 
 namespace WeGetFinancing\Checkout\Service;
 
+use Magento\Framework\Exception\CouldNotSaveException;
 use Psr\Log\LoggerInterface;
 use WeGetFinancing\Checkout\Service\Http\WGFClient;
 use Throwable;
@@ -14,6 +15,7 @@ class ValidateCredentials implements ValidateCredentialsInterface
 
     /**
      * UpdatePostback constructor.
+     *
      * @param LoggerInterface $logger
      * @param WGFClient $client
      * @param Config $config
@@ -22,8 +24,16 @@ class ValidateCredentials implements ValidateCredentialsInterface
         private LoggerInterface $logger,
         private WGFClient       $client,
         private Config          $config
-    ) { }
+    ) {
+    }
 
+    /**
+     * Validate merchant token
+     *
+     * @param string $token
+     * @return string
+     * @throws CouldNotSaveException
+     */
     public function validateMerchantToken(string $token): string
     {
         try {

@@ -14,5 +14,4 @@ class FunnelGeneratorRequestException extends Exception
     public const QUOTE_NOT_FOUND_ERROR_CODE = 2;
     public const QUOTE_WITH_NO_ITEMS_ERROR_MESSAGE = 'No product defined in the quote.';
     public const QUOTE_WITH_NO_ITEMS_ERROR_CODE = 3;
-
 }

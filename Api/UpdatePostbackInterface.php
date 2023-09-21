@@ -8,6 +8,8 @@ namespace WeGetFinancing\Checkout\Api;
 interface UpdatePostbackInterface
 {
     /**
+     * Update postback
+     *
      * @param string $version
      * @param string $request_token
      * @param mixed $updates
@@ -20,5 +22,4 @@ interface UpdatePostbackInterface
         mixed $updates,
         string $merchant_transaction_id
     ): string;
-
 }

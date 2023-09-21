@@ -8,6 +8,10 @@ use WeGetFinancing\Checkout\Exception\ApiResponseJsonEncodeException;
 trait JsonStringifyResponseTrait
 {
     /**
+     * Json stringify response
+     *
+     * @param array $response
+     * @return string
      * @throws CouldNotSaveException
      */
     public function jsonStringifyResponse(array $response): string
@@ -21,7 +25,7 @@ trait JsonStringifyResponseTrait
             );
 
             throw new CouldNotSaveException(
-                __(ApiResponseJsonEncodeException::JSON_ENCODE_GENERAL_ERROR_MESSAGE),
+                __('Response cannot be encoded'),
                 $exception
             );
         }

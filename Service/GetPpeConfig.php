@@ -2,6 +2,7 @@
 
 namespace WeGetFinancing\Checkout\Service;
 
+use Magento\Framework\Exception\CouldNotSaveException;
 use Psr\Log\LoggerInterface;
 use WeGetFinancing\Checkout\Api\GetPpeConfigInterface;
 use Throwable;
@@ -13,14 +14,22 @@ class GetPpeConfig implements GetPpeConfigInterface
 
     /**
      * GetPpeConfig constructor.
+     *
      * @param LoggerInterface $logger
      * @param Config $config
      */
     public function __construct(
         private LoggerInterface $logger,
         private Config          $config
-    ) { }
+    ) {
+    }
 
+    /**
+     * Get PPE Config
+     *
+     * @return string
+     * @throws CouldNotSaveException
+     */
     public function getPpeConfig(): string
     {
         try {

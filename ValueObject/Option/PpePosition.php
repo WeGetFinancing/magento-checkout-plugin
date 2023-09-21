@@ -6,6 +6,11 @@ use Magento\Framework\Data\OptionSourceInterface;
 
 class PpePosition implements OptionSourceInterface
 {
+    /**
+     * To Option Array
+     *
+     * @return array[]
+     */
     public function toOptionArray(): array
     {
         return [

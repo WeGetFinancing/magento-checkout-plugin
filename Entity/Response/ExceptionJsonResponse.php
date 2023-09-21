@@ -7,6 +7,9 @@ use WeGetFinancing\SDK\Exception\EntityValidationException;
 
 class ExceptionJsonResponse extends JsonResponse
 {
+    /**
+     * @param Throwable $exception
+     */
     public function __construct(Throwable $exception)
     {
         parent::__construct([

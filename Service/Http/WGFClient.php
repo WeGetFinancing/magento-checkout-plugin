@@ -22,12 +22,21 @@ class WGFClient
 {
     public const PPE_TEST_SUCCESS = "Merchant Token is Valid";
 
+    /**
+     * WGFClient __construct
+     *
+     * @param Config $config
+     * @param LoggerInterface $logger
+     */
     public function __construct(
         private Config $config,
         private LoggerInterface $logger
-    ) { }
+    ) {
+    }
 
     /**
+     * Get funnel url
+     *
      * @param FunnelGeneratorRequest $funnelGeneratorRequest
      * @return JsonResponse
      * @throws EntityValidationException|WGFClientException
@@ -63,6 +72,13 @@ class WGFClient
         );
     }
 
+    /**
+     * Send shipment notification
+     *
+     * @param UpdateShippingStatusRequestEntity $updateEntity
+     * @return ResponseEntity
+     * @throws WGFClientException
+     */
     public function sendShipmentNotification(UpdateShippingStatusRequestEntity $updateEntity): ResponseEntity
     {
         $authEntity = $this->getAuthEntity();
@@ -71,6 +87,8 @@ class WGFClient
     }
 
     /**
+     * Validate PPE Merchant Token
+     *
      * @param string $token
      * @return array<string, string>
      * @throws WGFClientException
@@ -89,6 +107,8 @@ class WGFClient
     }
 
     /**
+     * Get Auth Entity
+     *
      * @return AuthEntity
      * @throws WGFClientException
      */

@@ -8,7 +8,12 @@ use WeGetFinancing\Checkout\Model\ResourceModel\WeGetFinancingTransaction as WeG
 
 class Collection extends AbstractCollection
 {
-    protected function _construct()
+    /**
+     * Collection secondary constructor.
+     *
+     * @return void
+     */
+    protected function _construct(): void
     {
         $this->_init(WeGetFinancingTransaction::class, WeGetFinancingTransactionResource::class);
     }

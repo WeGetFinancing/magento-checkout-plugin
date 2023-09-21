@@ -42,7 +42,6 @@
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="initialize" xsi:type="string">WeGetFinancing\Checkout\Gateway\Command\InitializeCommand</item>
-                <item name="refund" xsi:type="string">WeGetFinancing\Checkout\Gateway\Command\RefundCommand</item>
             </argument>
         </arguments>
     </virtualType>

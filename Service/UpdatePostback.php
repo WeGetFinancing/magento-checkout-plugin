@@ -40,14 +40,24 @@ class UpdatePostback implements UpdatePostbackInterface
         self::WGF_REFUND_STATUS
     ];
 
+    /**
+     * @var string
+     */
     private string $wgfStatus;
 
+    /**
+     * @var array
+     */
     private array $tArray;
 
+    /**
+     * @var OrderInterface
+     */
     private OrderInterface $order;
 
     /**
      * UpdatePostback constructor.
+     *
      * @param LoggerInterface $logger
      * @param Session $session
      * @param Config $config
@@ -72,8 +82,18 @@ class UpdatePostback implements UpdatePostbackInterface
         private Invoice                          $invoice,
         private CreditmemoService                $creditMemoService,
         private QuoteRepository                  $quoteRepository
-    ) { }
+    ) {
+    }
 
+    /**
+     * Update postback
+     *
+     * @param string $version
+     * @param string $request_token
+     * @param mixed $updates
+     * @param string $merchant_transaction_id
+     * @return string
+     */
     public function updatePostback(
         string $version,
         string $request_token,
@@ -93,6 +113,8 @@ class UpdatePostback implements UpdatePostbackInterface
     }
 
     /**
+     * Validate request and set WGF status
+     *
      * @param string $version
      * @param string $invId
      * @param mixed $updates
@@ -166,6 +188,8 @@ class UpdatePostback implements UpdatePostbackInterface
     }
 
     /**
+     * Get Order
+     *
      * @param string $invId
      * @return void
      * @throws UpdatePostbackException
@@ -204,6 +228,8 @@ class UpdatePostback implements UpdatePostbackInterface
     }
 
     /**
+     * Set Order Status
+     *
      * @return void
      * @throws LocalizedException
      */
@@ -230,12 +256,14 @@ class UpdatePostback implements UpdatePostbackInterface
             return;
         }
 
-         if (WgfOrderStatusInterface::STATUS_REFUND === $this->wgfStatus) {
-             $this->refund();
-         }
+        if (WgfOrderStatusInterface::STATUS_REFUND === $this->wgfStatus) {
+            $this->refund();
+        }
     }
 
     /**
+     * Refund
+     *
      * @throws AlreadyExistsException
      * @throws LocalizedException
      */
@@ -252,7 +280,7 @@ class UpdatePostback implements UpdatePostbackInterface
             $invoiceIncrementId = $invoice->getIncrementId();
         }
 
-        if (true === is_null($invoiceIncrementId)) {
+        if (null === $invoiceIncrementId) {
             return;
         }
 

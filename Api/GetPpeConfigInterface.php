@@ -8,6 +8,8 @@ namespace WeGetFinancing\Checkout\Api;
 interface GetPpeConfigInterface
 {
     /**
+     * Get PPE Config
+     *
      * @return string
      */
     public function getPpeConfig(): string;

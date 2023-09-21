@@ -6,7 +6,7 @@ use Magento\Framework\Webapi\Rest\Response\RendererInterface;
 
 class Text implements RendererInterface
 {
-    const MIME_TYPE = 'text/plain';
+    public const MIME_TYPE = 'text/plain';
 
     /**
      * Convert data to JSON.
@@ -29,4 +29,3 @@ class Text implements RendererInterface
         return self::MIME_TYPE;
     }
 }
-

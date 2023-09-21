@@ -25,6 +25,14 @@ class FunnelUrlGenerator implements FunnelUrlGeneratorInterface
 
     /**
      * FunnelUrlGenerator constructor.
+     *
+     * @param LoggerInterface $logger
+     * @param Session $session
+     * @param FunnelGeneratorRequest $funnelGeneratorRequest
+     * @param WGFClient $client
+     * @param WeGetFinancingTransactionResource $resource
+     * @param WeGetFinancingTransactionFactory $transactionFactory
+     * @param WeGetFinancingCollection $collection
      */
     public function __construct(
         private LoggerInterface                   $logger,
@@ -34,10 +42,14 @@ class FunnelUrlGenerator implements FunnelUrlGeneratorInterface
         private WeGetFinancingTransactionResource $resource,
         private WeGetFinancingTransactionFactory  $transactionFactory,
         private WeGetFinancingCollection          $collection
-    ) { }
+    ) {
+    }
 
     /**
-     * {@inheritDoc}
+     * Generate funnel url public not registered user
+     *
+     * @param string $request
+     * @return string
      * @throws CouldNotSaveException
      */
     public function generateFunnelUrlPublic(string $request): string
@@ -63,7 +75,10 @@ class FunnelUrlGenerator implements FunnelUrlGeneratorInterface
     }
 
     /**
-     * {@inheritDoc}
+     * Generate funnel url registered user
+     *
+     * @param string $request
+     * @return string
      * @throws CouldNotSaveException
      */
     public function generateFunnelUrlRegistered(string $request): string
@@ -89,6 +104,8 @@ class FunnelUrlGenerator implements FunnelUrlGeneratorInterface
     }
 
     /**
+     * Decode Request
+     *
      * @param string $json
      * @return array
      * @throws FunnelUrlGeneratorException
@@ -109,7 +126,13 @@ class FunnelUrlGenerator implements FunnelUrlGeneratorInterface
     }
 
     /**
-     * @throws AlreadyExistsException|FunnelUrlGeneratorException
+     * Save or Update transaction
+     *
+     * @param int $quoteId
+     * @param string $invId
+     * @return void
+     * @throws AlreadyExistsException
+     * @throws FunnelUrlGeneratorException
      */
     protected function saveOrUpdateTransaction(int $quoteId, string $invId): void
     {
@@ -117,7 +140,7 @@ class FunnelUrlGenerator implements FunnelUrlGeneratorInterface
         $found = $this->collection->getData();
 
         if (count($found) >= 2) {
-            $this->logger->error(self::class . '::saveOrUpdateTransaction() Error' );
+            $this->logger->error(self::class . '::saveOrUpdateTransaction() Error');
             $this->logger->error('Multiple definition of order_id in the wegetfinancing transaction table');
             $this->logger->error('order_id: ' . $quoteId . ' - inv_id: ' . $invId);
             throw new FunnelUrlGeneratorException(
@@ -139,11 +162,17 @@ class FunnelUrlGenerator implements FunnelUrlGeneratorInterface
         $this->resource->save($transaction);
     }
 
-    private function updateFoundTransaction(array $found, string $invId)
+    /**
+     * Update found transaction
+     *
+     * @param array $found
+     * @param string $invId
+     * @return array
+     */
+    private function updateFoundTransaction(array $found, string $invId): array
     {
         $data = array_pop($found);
         $data['inv_id'] = $invId;
         return $data;
     }
 }
-

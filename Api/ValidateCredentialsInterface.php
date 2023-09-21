@@ -8,6 +8,8 @@ namespace WeGetFinancing\Checkout\Api;
 interface ValidateCredentialsInterface
 {
     /**
+     * Validate Merchant Token
+     *
      * @param string $token
      * @return string
      */

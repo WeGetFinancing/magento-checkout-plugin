@@ -19,10 +19,11 @@ class GeneralResponseValidator extends AbstractValidator
 
         foreach ($this->getResponseValidators() as $validator) {
             $validationResult = $validator($response);
-
             if (!$validationResult[0]) {
                 $isValid = $validationResult[0];
-                $errorMessages = array_merge($errorMessages, $validationResult[1]);
+                if (false === in_array($validationResult[1], $errorMessages)) {
+                    $errorMessages[] = $validationResult[1];
+                }
             }
         }
 
@@ -30,7 +31,9 @@ class GeneralResponseValidator extends AbstractValidator
     }
 
     /**
-     * @return array
+     * Get Response Validators
+     *
+     * @return mixed
      */
     private function getResponseValidators(): array
     {

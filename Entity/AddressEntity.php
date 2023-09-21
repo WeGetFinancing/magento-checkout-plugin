@@ -7,19 +7,39 @@ use WeGetFinancing\Checkout\Exception\AddressEntityException;
 
 class AddressEntity implements EntityInterface
 {
+    /**
+     * @var string
+     */
     protected string $street1;
 
+    /**
+     * @var string
+     */
     protected string $state;
 
+    /**
+     * @var string
+     */
     protected string $city;
 
+    /**
+     * @var string
+     */
     protected string $zipcode;
 
+    /**
+     * AddressEntity Constructor.
+     *
+     * @param RegionFactory $regionFactory
+     */
     public function __construct(
         private RegionFactory $regionFactory
-    ) { }
+    ) {
+    }
 
     /**
+     * Init From Array
+     *
      * @param array $array
      * @return EntityInterface
      * @throws AddressEntityException
@@ -33,6 +53,12 @@ class AddressEntity implements EntityInterface
         return $this;
     }
 
+    /**
+     * Set Street1
+     *
+     * @param string $street
+     * @return EntityInterface
+     */
     public function setStreet1(string $street): EntityInterface
     {
         $this->street1 = $street;
@@ -40,6 +66,8 @@ class AddressEntity implements EntityInterface
     }
 
     /**
+     * Set State
+     *
      * @param string $state
      * @return EntityInterface
      * @throws AddressEntityException
@@ -61,18 +89,35 @@ class AddressEntity implements EntityInterface
         return $this;
     }
 
+    /**
+     * Set City
+     *
+     * @param string $city
+     * @return EntityInterface
+     */
     public function setCity(string $city): EntityInterface
     {
         $this->city = $city;
         return $this;
     }
 
+    /**
+     * Set Zipcode
+     *
+     * @param string $zipcode
+     * @return EntityInterface
+     */
     public function setZipcode(string $zipcode): EntityInterface
     {
         $this->zipcode = $zipcode;
         return $this;
     }
 
+    /**
+     * To Array
+     *
+     * @return array
+     */
     public function toArray(): array
     {
         return [

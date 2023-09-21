@@ -17,15 +17,31 @@ use WeGetFinancing\SDK\Entity\Request\UpdateShippingStatusRequestEntity;
 
 class SalesOrderShipmentAfter implements ObserverInterface
 {
+    /**
+     * SalesOrderShipmentAfter __construct
+     *
+     * @param LoggerInterface $logger
+     * @param WGFClient $wGFClient
+     * @param WeGetFinancingTransactionFactory $transactionFactory
+     * @param WGFTransactionResource $transactionResource
+     * @param WGFTransactionCollection $transactionCollection
+     */
     public function __construct(
         private LoggerInterface                  $logger,
         private WGFClient                        $wGFClient,
         private WeGetFinancingTransactionFactory $transactionFactory,
         private WGFTransactionResource           $transactionResource,
         private WGFTransactionCollection         $transactionCollection
-    ) { }
+    ) {
+    }
 
-    public function execute(Observer $observer)
+    /**
+     * Execute the main purpose of this class
+     *
+     * @param  Observer $observer
+     * @return void
+     */
+    public function execute(Observer $observer): void
     {
         try {
             /** @var Shipment $shipment */

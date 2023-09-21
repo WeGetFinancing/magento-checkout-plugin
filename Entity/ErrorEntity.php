@@ -6,26 +6,54 @@ use WeGetFinancing\Checkout\Exception\ErrorEntityException;
 
 class ErrorEntity extends AbstractEntity
 {
+    /**
+     * @var string
+     */
     protected string $field;
 
+    /**
+     * @var string
+     */
     protected string $message;
 
+    /**
+     * Get Field
+     *
+     * @return string
+     */
     public function getField(): string
     {
         return $this->field;
     }
 
+    /**
+     * Get Message
+     *
+     * @return string
+     */
     public function getMessage(): string
     {
         return $this->message;
     }
 
+    /**
+     * Set Field
+     *
+     * @param string $field
+     * @return EntityInterface
+     */
     public function setField(string $field): EntityInterface
     {
         $this->field = $field;
         return $this;
     }
 
+    /**
+     * Set Message
+     *
+     * @param string $message
+     * @return EntityInterface
+     */
     public function setMessage(string $message): EntityInterface
     {
         $this->message = $message;
@@ -33,6 +61,8 @@ class ErrorEntity extends AbstractEntity
     }
 
     /**
+     * Init From Array
+     *
      * @param array $array
      * @return EntityInterface
      * @throws ErrorEntityException
@@ -53,6 +83,11 @@ class ErrorEntity extends AbstractEntity
         return $this;
     }
 
+    /**
+     * To Array
+     *
+     * @return array
+     */
     public function toArray(): array
     {
         return [
@@ -60,5 +95,4 @@ class ErrorEntity extends AbstractEntity
             'message' => $this->getMessage()
         ];
     }
-
 }
