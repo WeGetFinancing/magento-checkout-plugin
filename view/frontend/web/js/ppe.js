@@ -1,17 +1,34 @@
-require([], function () {
-    const config = window.checkoutConfig.payment.wegetfinancing_payment;
+require([
+    'mage/storage',
+    'mage/url'
+], function(storage, urlBuilder) {
+    let url = urlBuilder.build('/rest/default/V1/wegetfinancing/get-ppe-config')
 
-    require([config.ppeJsUrl]);
+    storage.get(
+        url,
+        '',
+        true
+    ).done(
+        function (json) {
+            let response = JSON.parse(json);
 
-    window.ppeConfiguration = {
-        priceSelector: config.ppePriceSelector,
-        productNameSelector: config.ppeProductNameSelector,
-        debug: config.ppeIsDebug,
-        token: config.ppeToken,
-        applyNow: config.ppeIsApplyNow,
-        branded: config.ppeIsBranded,
-        minAmount: config.ppeMinAmount,
-        customText: config.ppeCustomText,
-        position: config.ppePosition
-    };
+            require([response.ppeJsUrl]);
+
+            const ppeConfiguration = {
+                priceSelector: response.priceSelector,
+                productNameSelector: response.productNameSelector,
+                debug: response.debug,
+                token: response.token,
+                applyNow: response.applyNow,
+                branded: response.branded,
+                minAmount: response.minAmount,
+                customText: response.customText,
+                hover: response.hover,
+                fontSize: response.fontSize,
+                position: response.position
+            };
+
+            window.ppeConfiguration = ppeConfiguration;
+        }
+    );
 });

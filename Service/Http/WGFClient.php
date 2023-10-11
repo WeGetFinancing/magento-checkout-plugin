@@ -2,10 +2,12 @@
 
 namespace WeGetFinancing\Checkout\Service\Http;
 
+use GuzzleHttp\Exception\GuzzleException;
 use WeGetFinancing\Checkout\Entity\Request\FunnelGeneratorRequest;
 use WeGetFinancing\Checkout\Entity\Response\JsonResponse;
 use WeGetFinancing\Checkout\Exception\WGFClientException;
 use WeGetFinancing\Checkout\Gateway\Config;
+use WeGetFinancing\Checkout\ValueObject\PpeSettings;
 use WeGetFinancing\SDK\Entity\AuthEntity;
 use WeGetFinancing\SDK\Client as SDKClient;
 use WeGetFinancing\SDK\Entity\Request\LoanRequestEntity;
@@ -14,15 +16,27 @@ use WeGetFinancing\SDK\Entity\Response\ResponseEntity;
 use WeGetFinancing\SDK\Exception\EntityValidationException;
 use Psr\Log\LoggerInterface;
 use \Throwable;
+use WeGetFinancing\SDK\Service\PpeClient;
 
 class WGFClient
 {
+    public const PPE_TEST_SUCCESS = "Merchant Token is Valid";
+
+    /**
+     * WGFClient __construct
+     *
+     * @param Config $config
+     * @param LoggerInterface $logger
+     */
     public function __construct(
         private Config $config,
         private LoggerInterface $logger
-    ) { }
+    ) {
+    }
 
     /**
+     * Get funnel url
+     *
      * @param FunnelGeneratorRequest $funnelGeneratorRequest
      * @return JsonResponse
      * @throws EntityValidationException|WGFClientException
@@ -58,6 +72,13 @@ class WGFClient
         );
     }
 
+    /**
+     * Send shipment notification
+     *
+     * @param UpdateShippingStatusRequestEntity $updateEntity
+     * @return ResponseEntity
+     * @throws WGFClientException
+     */
     public function sendShipmentNotification(UpdateShippingStatusRequestEntity $updateEntity): ResponseEntity
     {
         $authEntity = $this->getAuthEntity();
@@ -66,6 +87,28 @@ class WGFClient
     }
 
     /**
+     * Validate PPE Merchant Token
+     *
+     * @param string $token
+     * @return array<string, string>
+     * @throws WGFClientException
+     * @throws GuzzleException
+     */
+    public function validatePpeMerchantToken(string $token): array
+    {
+        $authEntity = AuthEntity::make([
+            'username' => 'not-applicable',
+            'password' => 'not-applicable',
+            'merchantId' => 'not-applicable',
+            'prod' => $this->config->isProd()
+        ]);
+        $client = SDKClient::make($authEntity);
+        return $client->testPpe($token);
+    }
+
+    /**
+     * Get Auth Entity
+     *
      * @return AuthEntity
      * @throws WGFClientException
      */

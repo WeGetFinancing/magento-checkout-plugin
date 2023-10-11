@@ -6,9 +6,14 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 class WeGetFinancingTransaction extends AbstractDb
 {
-    const TABLE_NAME = 'wegetfinancing_transaction';
-    const PRIMARY_KEY = 'wegetfinancing_transaction_id';
+    public const TABLE_NAME = 'wegetfinancing_transaction';
+    public const PRIMARY_KEY = 'wegetfinancing_transaction_id';
 
+    /**
+     * WeGetFinancingTransaction secondary constructor.
+     *
+     * @return void
+     */
     protected function _construct(): void
     {
         $this->_init(self::TABLE_NAME, self::PRIMARY_KEY);

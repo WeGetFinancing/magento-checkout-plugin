@@ -243,3 +243,5 @@ coverage.xml
 store/
 .composer/
 !.composer/.gitkeep
+
+report.json

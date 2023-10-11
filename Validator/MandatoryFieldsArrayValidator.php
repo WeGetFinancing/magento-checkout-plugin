@@ -12,6 +12,13 @@ class MandatoryFieldsArrayValidator implements MandatoryFieldsArrayValidatorInte
      */
     protected array $validationErrors = [];
 
+    /**
+     * Validate
+     *
+     * @param array $mandatoryFields
+     * @param array $array
+     * @return bool
+     */
     public function validate(array $mandatoryFields, array $array): bool
     {
         foreach ($mandatoryFields as $mandatoryField) {
@@ -21,16 +28,27 @@ class MandatoryFieldsArrayValidator implements MandatoryFieldsArrayValidatorInte
         return empty($this->validationErrors);
     }
 
+    /**
+     * Get Validation Errors
+     *
+     * @return array
+     */
     public function getValidationErrors(): array
     {
+        $function = function ($error) {
+            return $error->toArray();
+        };
         /** @var $error ErrorEntity */
-        return array_map(function ($error) {
-                return $error->toArray();
-            },
-            $this->validationErrors
-        );
+        return array_map($function, $this->validationErrors);
     }
 
+    /**
+     * Validate Mandatory Field
+     *
+     * @param array $array
+     * @param string $fieldName
+     * @return void
+     */
     protected function validateMandatoryField(array $array, string $fieldName): void
     {
         if (false === isset($array[$fieldName]) || true === empty($array[$fieldName])) {

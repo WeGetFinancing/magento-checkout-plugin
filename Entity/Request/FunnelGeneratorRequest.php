@@ -15,20 +15,44 @@ use Magento\Quote\Model\Quote;
 
 class FunnelGeneratorRequest implements EntityInterface
 {
+    /**
+     * @var string
+     */
     protected string $firstName;
 
+    /**
+     * @var string
+     */
     protected string $lastName;
 
+    /**
+     * @var string
+     */
     protected string $telephone;
 
+    /**
+     * @var string
+     */
     protected string $email;
 
+    /**
+     * @var string
+     */
     protected string $shippingAmount;
 
+    /**
+     * @var int
+     */
     protected int $merchantTransactionId;
 
+    /**
+     * @var array
+     */
     protected array $items = [];
 
+    /**
+     * @var array|string[]
+     */
     private array $mandatoryFields = [
         'firstname',
         'lastname',
@@ -42,16 +66,30 @@ class FunnelGeneratorRequest implements EntityInterface
         'quote'
     ];
 
+    /**
+     * @var array|string[]
+     */
     private array $sessionMandatoryFields = ['shipping_amount'];
 
+    /**
+     * FunnelGeneratorRequest Constructor.
+     *
+     * @param MandatoryFieldsArrayValidatorInterface $mandatoryFieldsValidator
+     * @param AddressEntity $address
+     * @param Config $config
+     * @param ProductMetadataInterface $productMetadata
+     */
     public function __construct(
         protected MandatoryFieldsArrayValidatorInterface $mandatoryFieldsValidator,
         protected AddressEntity $address,
         protected Config $config,
         protected ProductMetadataInterface $productMetadata
-    ) { }
+    ) {
+    }
 
     /**
+     * Init From Array
+     *
      * @param array $array
      * @return EntityInterface
      * @throws AddressEntityException
@@ -93,7 +131,10 @@ class FunnelGeneratorRequest implements EntityInterface
     }
 
     /**
+     * Init From Array And Session
+     *
      * @param array $array
+     * @param Quote $quote
      * @return EntityInterface
      * @throws AddressEntityException
      * @throws EntityValidationException
@@ -129,6 +170,11 @@ class FunnelGeneratorRequest implements EntityInterface
         return $this->commonInit($quote);
     }
 
+    /**
+     * To Array
+     *
+     * @return array
+     */
     public function toArray(): array
     {
         return [
@@ -152,6 +198,8 @@ class FunnelGeneratorRequest implements EntityInterface
     }
 
     /**
+     * Common Init
+     *
      * @param Quote $quote
      * @return $this
      * @throws EntityValidationException

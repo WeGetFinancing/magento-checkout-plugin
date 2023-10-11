@@ -8,30 +8,32 @@ use WeGetFinancing\Checkout\Exception\JsonResponseException;
 
 class JsonResponse extends AbstractEntity
 {
-    const TYPE_SUCCESS = 'SUCCESS';
-    const TYPE_ERROR = 'ERROR';
+    public const TYPE_SUCCESS = 'SUCCESS';
+    public const TYPE_ERROR = 'ERROR';
 
     /**
      * @var string(self::TYPE_SUCCESS | self::TYPE_ERROR)
      */
-    protected $type;
+    protected string $type;
 
     /**
      * @var array
      */
-    protected $messages = [];
+    protected array $messages = [];
 
     /**
      * @var array
      */
-    protected $data = [];
+    protected array $data = [];
 
     /**
+     * Set Type
+     *
      * @param string $type
      * @return $this
      * @throws JsonResponseException
      */
-    public function setType(string $type)
+    public function setType(string $type): static
     {
         if (self::TYPE_ERROR === $type || self::TYPE_SUCCESS === $type) {
             $this->type = $type;
@@ -45,47 +47,62 @@ class JsonResponse extends AbstractEntity
     }
 
     /**
+     * Set Message
+     *
      * @param array $messages
      * @return $this
      */
-    public function setMessages(array $messages)
+    public function setMessages(array $messages): static
     {
         $this->messages = $messages;
         return $this;
     }
 
     /**
+     * Set Data
+     *
      * @param array $data
      * @return $this
      */
-    public function setData(array $data)
+    public function setData(array $data): static
     {
         $this->data = $data;
         return $this;
     }
 
-    public function getType()
+    /**
+     * Get Type
+     *
+     * @return string
+     */
+    public function getType(): string
     {
         return $this->type;
     }
 
     /**
+     * Get Messages
+     *
      * @return array
      */
-    public function getMessages()
+    public function getMessages(): array
     {
         return $this->messages;
     }
 
     /**
+     * Get Data
+     *
      * @return array
      */
-    public function getData()
+    public function getData(): array
     {
         return $this->data;
     }
 
     /**
+     * Init From Array
+     *
      * @param array $array
      * @return JsonResponse
      * @throws JsonResponseException
@@ -112,8 +129,9 @@ class JsonResponse extends AbstractEntity
         return $this;
     }
 
-
     /**
+     * To Array
+     *
      * @return array
      */
     public function toArray(): array

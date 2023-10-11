@@ -28,6 +28,12 @@
     <!-- WeGetFinancing_Checkout Postback Url Service -->
     <preference for="WeGetFinancing\Checkout\Api\UpdatePostbackInterface" type="WeGetFinancing\Checkout\Service\UpdatePostback" />
 
+    <!-- WeGetFinancing_Checkout Ppe Configuration Service -->
+    <preference for="WeGetFinancing\Checkout\Api\GetPpeConfigInterface" type="WeGetFinancing\Checkout\Service\GetPpeConfig" />
+
+    <!-- WeGetFinancing_Checkout Validate Credentials Service -->
+    <preference for="WeGetFinancing\Checkout\Api\ValidateCredentialsInterface" type="WeGetFinancing\Checkout\Service\ValidateCredentials" />
+
     <!-- WeGetFinancing_Checkout Mandatory Fields Validator -->
     <preference for="WeGetFinancing\Checkout\Validator\MandatoryFieldsArrayValidatorInterface" type="WeGetFinancing\Checkout\Validator\MandatoryFieldsArrayValidator" />
 
@@ -36,7 +42,6 @@
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="initialize" xsi:type="string">WeGetFinancing\Checkout\Gateway\Command\InitializeCommand</item>
-                <item name="refund" xsi:type="string">WeGetFinancing\Checkout\Gateway\Command\RefundCommand</item>
             </argument>
         </arguments>
     </virtualType>

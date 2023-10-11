@@ -3,40 +3,29 @@
 namespace WeGetFinancing\Checkout\Ui;
 
 use Magento\Checkout\Model\ConfigProviderInterface;
-use Magento\Checkout\Model\Session;
 use Magento\Framework\App\RequestInterface;
-use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Asset\Repository;
 use WeGetFinancing\Checkout\Gateway\Config;
-use Magento\Quote\Model\Quote;
 
 class ConfigProvider implements ConfigProviderInterface
 {
-    private Quote $quote;
-
     /**
      * ConfigProvider constructor.
+     *
      * @param Config $config
-     * @param UrlInterface $url
      * @param Repository $assetRepo
      * @param RequestInterface $request
-     * @param Session $session
-     * @throws LocalizedException
-     * @throws NoSuchEntityException
      */
     public function __construct(
         private Config $config,
-        private UrlInterface $url,
         private Repository $assetRepo,
         private RequestInterface $request,
-        Session $session
     ) {
-        $this->quote = $session->getQuote();
     }
 
     /**
+     * Get Config
+     *
      * @return array
      */
     public function getConfig(): array
@@ -48,23 +37,15 @@ class ConfigProvider implements ConfigProviderInterface
                     'sdkUrl' => $this->config->getSdkUrl(),
                     'paymentIconUrl' => $this->config->getPaymentIconUrl(),
                     'cartGuestPath' => $this->config->getCartGuestPath(),
-                    'cartPath' => $this->config->getCartPath(),
-                    'ppeJsUrl' => $this->config-getPpeJsUrl(),
-                    'ppePriceSelector' => $this->config-getPpePriceSelector(),
-                    'ppeProductNameSelector' => $this->config-getPpeProductNameSelector(),
-                    'ppeIsDebug' => $this->config-getPpeIsDebug(),
-                    'ppeToken' => $this->config-getPpeToken(),
-                    'ppeIsApplyNow' => $this->config-getPpeIsApplyNow(),
-                    'ppeIsBranded' => $this->config-getPpeIsBranded(),
-                    'ppeMinAmount' => $this->config-getPpeMinAmount(),
-                    'ppeCustomText' => $this->config-getPpeCustomText(),
-                    'ppePosition' => $this->config-getPpePosition()
+                    'cartPath' => $this->config->getCartPath()
                 ]
             ]
         ];
     }
 
     /**
+     * Get Logo Url
+     *
      * @return string
      */
     private function getLogoUrl(): string
@@ -73,6 +54,8 @@ class ConfigProvider implements ConfigProviderInterface
     }
 
     /**
+     * Get View File Url
+     *
      * @param string $fileId
      * @return string
      */
