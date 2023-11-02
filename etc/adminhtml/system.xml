@@ -102,7 +102,7 @@
                         showInDefault="1" showInWebsite="1" showInStore="1"
                 >
                     <label>PPE Merchant Token</label>
-                    <validate>validate-wgf-merchant-token-empty validate-wgf-merchant-token-error</validate>
+                    <validate>validate-wgf-merchant-token-not-set validate-wgf-merchant-token-empty validate-wgf-merchant-token-error</validate>
                 </field>
                 <field
                         id="ppe_is_apply_now"

@@ -4,5 +4,6 @@
     <head>
         <link src="WeGetFinancing_Checkout::js/validator-merchant-token-empty.js"/>
         <link src="WeGetFinancing_Checkout::js/validator-merchant-token-error.js"/>
+        <link src="WeGetFinancing_Checkout::js/validator-merchant-token-not-set.js"/>
     </head>
 </page>
