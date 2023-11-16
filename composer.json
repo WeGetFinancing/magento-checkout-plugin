@@ -1,6 +1,6 @@
 {
     "name": "wegetfinancing/magento-checkout-plugin",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "type": "magento2-module",
     "description": "WeGetFinancing checkout module for Magento 2.",
     "license": "LGPL-3.0-only",
@@ -11,8 +11,13 @@
         }
     ],
     "require": {
+        "ext-json": "*",
         "magento/module-payment": "100.*",
-        "wegetfinancing/php-sdk": "2.*",
+        "guzzlehttp/guzzle": "^7.0",
+        "symfony/validator": "5.4.8",
+        "doctrine/annotations": "^1.14.3",
+        "symfony/serializer": "v4.4.47",
+        "symfony/cache": "v6.3.8",
         "sentry/sdk": "^3.5"
     },
     "autoload": {
