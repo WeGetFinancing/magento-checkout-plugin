@@ -4,7 +4,7 @@ namespace WeGetFinancing\Checkout\Entity;
 
 use WeGetFinancing\Checkout\Validator\MandatoryFieldsArrayValidator;
 use WeGetFinancing\Checkout\Validator\MandatoryFieldsArrayValidatorInterface;
-use WeGetFinancing\SDK\Exception\EntityValidationException;
+use WeGetFinancing\Checkout\Service\Http\SDK\Exception\EntityValidationException;
 use WeGetFinancing\Checkout\Exception\CartItemException;
 
 class CartItem implements EntityInterface

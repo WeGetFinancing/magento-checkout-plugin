@@ -9,7 +9,7 @@ use WeGetFinancing\Checkout\Entity\EntityInterface;
 use WeGetFinancing\Checkout\Exception\AddressEntityException;
 use WeGetFinancing\Checkout\Exception\FunnelGeneratorRequestException;
 use WeGetFinancing\Checkout\Validator\MandatoryFieldsArrayValidatorInterface;
-use WeGetFinancing\SDK\Exception\EntityValidationException;
+use WeGetFinancing\Checkout\Service\Http\SDK\Exception\EntityValidationException;
 use WeGetFinancing\Checkout\Gateway\Config;
 use Magento\Quote\Model\Quote;
 

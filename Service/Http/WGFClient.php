@@ -8,15 +8,15 @@ use WeGetFinancing\Checkout\Entity\Response\JsonResponse;
 use WeGetFinancing\Checkout\Exception\WGFClientException;
 use WeGetFinancing\Checkout\Gateway\Config;
 use WeGetFinancing\Checkout\ValueObject\PpeSettings;
-use WeGetFinancing\SDK\Entity\AuthEntity;
-use WeGetFinancing\SDK\Client as SDKClient;
-use WeGetFinancing\SDK\Entity\Request\LoanRequestEntity;
-use WeGetFinancing\SDK\Entity\Request\UpdateShippingStatusRequestEntity;
-use WeGetFinancing\SDK\Entity\Response\ResponseEntity;
-use WeGetFinancing\SDK\Exception\EntityValidationException;
+use WeGetFinancing\Checkout\Service\Http\SDK\Entity\AuthEntity;
+use WeGetFinancing\Checkout\Service\Http\SDK\Client as SDKClient;
+use WeGetFinancing\Checkout\Service\Http\SDK\Entity\Request\LoanRequestEntity;
+use WeGetFinancing\Checkout\Service\Http\SDK\Entity\Request\UpdateShippingStatusRequestEntity;
+use WeGetFinancing\Checkout\Service\Http\SDK\Entity\Response\ResponseEntity;
+use WeGetFinancing\Checkout\Service\Http\SDK\Exception\EntityValidationException;
 use Psr\Log\LoggerInterface;
 use \Throwable;
-use WeGetFinancing\SDK\Service\PpeClient;
+use WeGetFinancing\Checkout\Service\Http\SDK\Service\PpeClient;
 
 class WGFClient
 {

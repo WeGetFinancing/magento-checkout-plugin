@@ -2,7 +2,7 @@
 
 namespace WeGetFinancing\Checkout\Exception;
 
-use WeGetFinancing\SDK\Exception\EntityValidationException;
+use WeGetFinancing\Checkout\Service\Http\SDK\Exception\EntityValidationException;
 use \Exception;
 
 class WGFClientException extends Exception
