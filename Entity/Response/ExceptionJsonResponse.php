@@ -3,7 +3,7 @@
 namespace WeGetFinancing\Checkout\Entity\Response;
 
 use Throwable;
-use WeGetFinancing\Checkout\Service\Http\SDK\Exception\EntityValidationException;
+use WeGetFinancing\SDK\Exception\EntityValidationException;
 
 class ExceptionJsonResponse extends JsonResponse
 {

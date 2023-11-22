@@ -14,7 +14,7 @@ use WeGetFinancing\Checkout\Exception\FunnelGeneratorRequestException;
 use WeGetFinancing\Checkout\Exception\FunnelUrlGeneratorException;
 use WeGetFinancing\Checkout\Exception\WGFClientException;
 use WeGetFinancing\Checkout\Service\Http\WGFClient;
-use WeGetFinancing\Checkout\Service\Http\SDK\Exception\EntityValidationException;
+use WeGetFinancing\SDK\Exception\EntityValidationException;
 use WeGetFinancing\Checkout\Model\WeGetFinancingTransactionFactory;
 use WeGetFinancing\Checkout\Model\ResourceModel\WeGetFinancingTransaction as WeGetFinancingTransactionResource;
 use WeGetFinancing\Checkout\Model\ResourceModel\WeGetFinancingTransaction\Collection as WeGetFinancingCollection;

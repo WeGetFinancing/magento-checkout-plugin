@@ -13,7 +13,7 @@ use WeGetFinancing\Checkout\Model\WeGetFinancingTransactionFactory;
 use WeGetFinancing\Checkout\Model\ResourceModel\WeGetFinancingTransaction as WGFTransactionResource;
 use WeGetFinancing\Checkout\Model\ResourceModel\WeGetFinancingTransaction\Collection as WGFTransactionCollection;
 use WeGetFinancing\Checkout\Service\Http\WGFClient;
-use WeGetFinancing\Checkout\Service\Http\SDK\Entity\Request\UpdateShippingStatusRequestEntity;
+use WeGetFinancing\SDK\Entity\Request\UpdateShippingStatusRequestEntity;
 
 class SalesOrderShipmentAfter implements ObserverInterface
 {
