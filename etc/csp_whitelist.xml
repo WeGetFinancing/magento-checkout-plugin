@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="base-uri">
+            <values>
+                <value id="wegetfinancing-cdn" type="host">https://cdn.wegetfinancing.com</value>
+                <value id="wegetfinancing-ppe" type="host">https://ppe.wegetfinancing.com</value>
+                <value id="wegetfinancing-ppe-sandbox" type="host">https://ppe.sandbox.dev.wegetfinancing.com</value>
+            </values>
+        </policy>
+        <policy id="child-src">
+            <values>
+                <value id="wegetfinancing-cdn" type="host">https://cdn.wegetfinancing.com</value>
+                <value id="wegetfinancing-ppe" type="host">https://ppe.wegetfinancing.com</value>
+                <value id="wegetfinancing-ppe-sandbox" type="host">https://ppe.sandbox.dev.wegetfinancing.com</value>
+            </values>
+        </policy>
+        <policy id="connect-src">
+            <values>
+                <value id="wegetfinancing-partner" type="host">https://partner.wegetfinancing.com</value>
+                <value id="wegetfinancing-partner-sandbox" type="host">https://partner.sandbox.dev.wegetfinancing.com</value>
+                <value id="wegetfinancing-cdn" type="host">https://cdn.wegetfinancing.com</value>
+                <value id="wegetfinancing-ppe" type="host">https://ppe.wegetfinancing.com</value>
+                <value id="wegetfinancing-ppe-sandbox" type="host">https://ppe.sandbox.dev.wegetfinancing.com</value>
+            </values>
+        </policy>
+        <policy id="form-action">
+            <values>
+                <value id="wegetfinancing-cdn" type="host">https://cdn.wegetfinancing.com</value>
+                <value id="wegetfinancing-ppe" type="host">https://ppe.wegetfinancing.com</value>
+                <value id="wegetfinancing-ppe-sandbox" type="host">https://ppe.sandbox.dev.wegetfinancing.com</value>
+            </values>
+        </policy>
+        <policy id="frame-src">
+            <values>
+                <value id="wegetfinancing-cdn" type="host">https://cdn.wegetfinancing.com</value>
+                <value id="wegetfinancing-ppe" type="host">https://ppe.wegetfinancing.com</value>
+                <value id="wegetfinancing-ppe-sandbox" type="host">https://ppe.sandbox.dev.wegetfinancing.com</value>
+            </values>
+        </policy>
+        <policy id="img-src">
+            <values>
+                <value id="wegetfinancing-wiki" type="host">https://wiki.dev.wegetfinancing.com/</value>
+                <value id="wegetfinancing-cdn" type="host">https://cdn.wegetfinancing.com</value>
+                <value id="wegetfinancing-ppe" type="host">https://ppe.wegetfinancing.com</value>
+                <value id="wegetfinancing-ppe-sandbox" type="host">https://ppe.sandbox.dev.wegetfinancing.com</value>
+            </values>
+        </policy>
+        <policy id="media-src">
+            <values>
+                <value id="wegetfinancing-wiki" type="host">https://wiki.dev.wegetfinancing.com/</value>
+                <value id="wegetfinancing-cdn" type="host">https://cdn.wegetfinancing.com</value>
+                <value id="wegetfinancing-ppe" type="host">https://ppe.wegetfinancing.com</value>
+                <value id="wegetfinancing-ppe-sandbox" type="host">https://ppe.sandbox.dev.wegetfinancing.com</value>
+            </values>
+        </policy>
+        <policy id="script-src">
+            <values>
+                <value id="wegetfinancing-cdn" type="host">https://cdn.wegetfinancing.com</value>
+                <value id="wegetfinancing-ppe" type="host">https://ppe.wegetfinancing.com</value>
+                <value id="wegetfinancing-ppe-sandbox" type="host">https://ppe.sandbox.dev.wegetfinancing.com</value>
+            </values>
+        </policy>
+        <policy id="style-src">
+            <values>
+                <value id="wegetfinancing-cdn" type="host">https://cdn.wegetfinancing.com</value>
+                <value id="wegetfinancing-ppe" type="host">https://ppe.wegetfinancing.com</value>
+                <value id="wegetfinancing-ppe-sandbox" type="host">https://ppe.sandbox.dev.wegetfinancing.com</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>

@@ -1,6 +1,6 @@
 {
     "name": "wegetfinancing/magento-checkout-plugin",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "type": "magento2-module",
     "description": "WeGetFinancing checkout module for Magento 2.",
     "license": "LGPL-3.0-only",
@@ -13,7 +13,7 @@
     "require": {
         "ext-json": "*",
         "magento/module-payment": "100.*",
-        "wegetfinancing/php-sdk": "^3.0",
+        "wegetfinancing/php-sdk": "^4.0",
         "sentry/sdk": "^3.5"
     },
     "autoload": {
