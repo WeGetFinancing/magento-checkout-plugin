@@ -13,7 +13,7 @@
     "require": {
         "ext-json": "*",
         "magento/module-payment": "100.*",
-        "wegetfinancing/php-sdk": "^4.0",
+        "wegetfinancing/php-sdk": "^5.0",
         "sentry/sdk": "^3.5"
     },
     "autoload": {

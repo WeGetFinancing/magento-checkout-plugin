@@ -3,6 +3,9 @@
     <policies>
         <policy id="base-uri">
             <values>
+                <value id="wegetfinancing-partner" type="host">https://partner.wegetfinancing.com</value>
+                <value id="wegetfinancing-partner-sandbox" type="host">https://partner.sandbox.wegetfinancing.com</value>
+                <value id="wegetfinancing-partner-sandbox-dev" type="host">https://partner.sandbox.dev.wegetfinancing.com</value>
                 <value id="wegetfinancing-cdn" type="host">https://cdn.wegetfinancing.com</value>
                 <value id="wegetfinancing-ppe" type="host">https://ppe.wegetfinancing.com</value>
                 <value id="wegetfinancing-ppe-sandbox" type="host">https://ppe.sandbox.dev.wegetfinancing.com</value>
@@ -10,6 +13,9 @@
         </policy>
         <policy id="child-src">
             <values>
+                <value id="wegetfinancing-partner" type="host">https://partner.wegetfinancing.com</value>
+                <value id="wegetfinancing-partner-sandbox" type="host">https://partner.sandbox.wegetfinancing.com</value>
+                <value id="wegetfinancing-partner-sandbox-dev" type="host">https://partner.sandbox.dev.wegetfinancing.com</value>
                 <value id="wegetfinancing-cdn" type="host">https://cdn.wegetfinancing.com</value>
                 <value id="wegetfinancing-ppe" type="host">https://ppe.wegetfinancing.com</value>
                 <value id="wegetfinancing-ppe-sandbox" type="host">https://ppe.sandbox.dev.wegetfinancing.com</value>
@@ -18,7 +24,8 @@
         <policy id="connect-src">
             <values>
                 <value id="wegetfinancing-partner" type="host">https://partner.wegetfinancing.com</value>
-                <value id="wegetfinancing-partner-sandbox" type="host">https://partner.sandbox.dev.wegetfinancing.com</value>
+                <value id="wegetfinancing-partner-sandbox" type="host">https://partner.sandbox.wegetfinancing.com</value>
+                <value id="wegetfinancing-partner-sandbox-dev" type="host">https://partner.sandbox.dev.wegetfinancing.com</value>
                 <value id="wegetfinancing-cdn" type="host">https://cdn.wegetfinancing.com</value>
                 <value id="wegetfinancing-ppe" type="host">https://ppe.wegetfinancing.com</value>
                 <value id="wegetfinancing-ppe-sandbox" type="host">https://ppe.sandbox.dev.wegetfinancing.com</value>
@@ -26,6 +33,9 @@
         </policy>
         <policy id="form-action">
             <values>
+                <value id="wegetfinancing-partner" type="host">https://partner.wegetfinancing.com</value>
+                <value id="wegetfinancing-partner-sandbox" type="host">https://partner.sandbox.wegetfinancing.com</value>
+                <value id="wegetfinancing-partner-sandbox-dev" type="host">https://partner.sandbox.dev.wegetfinancing.com</value>
                 <value id="wegetfinancing-cdn" type="host">https://cdn.wegetfinancing.com</value>
                 <value id="wegetfinancing-ppe" type="host">https://ppe.wegetfinancing.com</value>
                 <value id="wegetfinancing-ppe-sandbox" type="host">https://ppe.sandbox.dev.wegetfinancing.com</value>
