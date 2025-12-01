@@ -41,9 +41,9 @@
                 <cart_path>/carts/mine/wegetfinancing-generate-funnel-url</cart_path>
                 <postback_path>/wegetfinancing/update-postback</postback_path>
                 <ppe_js_prod>https://ppe.wegetfinancing.com/index.js</ppe_js_prod>
-                <ppe_js_sandbox>https://ppe.sandbox.dev.wegetfinancing.com/index.js</ppe_js_sandbox>
+                <ppe_js_sandbox>https://ppe.sandbox.wegetfinancing.com/index.js</ppe_js_sandbox>
                 <ppe_css_prod>https://ppe.wegetfinancing.com/index.css</ppe_css_prod>
-                <ppe_css_sandbox>https://ppe.sandbox.dev.wegetfinancing.com/index.css</ppe_css_sandbox>
+                <ppe_css_sandbox>https://ppe.sandbox.wegetfinancing.com/index.css</ppe_css_sandbox>
 
             </wegetfinancing_payment>
         </payment>
